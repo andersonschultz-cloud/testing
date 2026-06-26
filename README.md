@@ -1,34 +1,27 @@
-# 💰 Consumo da Vida · v3.0
+# 💰 Consumo da Vida · v4.0
 
-**Hub de Inteligência Financeira** — três ferramentas, um ecossistema.
+**Hub de Inteligência Financeira** | [consumodavida.com.br](https://consumodavida.com.br)
 
-🌐 [consumodavida.com.br](https://consumodavida.com.br)
+## Simulador de Rendimentos — 8 Instituições
 
-## Ferramentas
+| Instituição | Produto de Referência | Rentabilidade | Fonte |
+|---|---|---|---|
+| PicPay | Reserva PicPay — CDB liq. diária | 150% do CDI | picpay.com |
+| Sicredi | CDB liq. diária (mín. R$1.000) | 108% do CDI | quanto-rende.com jun/2026 |
+| Tesouro Selic 2027 | Título público federal | Selic + 0,3433% | Tesouro Direto |
+| Tesouro Selic 2024 | Título público federal | Selic + 0,1806% | Tesouro Direto |
+| Nubank | Conta Remunerada / CDB liq. diária | 100% do CDI | nubank.com.br |
+| Santander | CDB DI — liq. diária | 100% do CDI | múltiplas fontes 2026 |
+| Itaú | CDB DI — liq. diária | 100% do CDI | itau.com.br + múltiplas fontes |
+| Poupança | Conta poupança — qualquer banco | 0,5%/mês + TR | Lei 12.703/2012 |
 
-| | Ferramenta | Função |
-|---|---|---|
-| 🕐 | **Calculadora de Vida** | Converte preço em horas/dias de trabalho. Método QDP. |
-| 📊 | **Planejador de Compras** | Avalia peso da compra, plano de economia, desconto à vista. |
-| 📈 | **Simulador de Rendimentos** | Juros compostos com Selic ao vivo + instituições personalizadas. |
-
-## Simulador v2.0 — Novidades
-
-- **Tolerância total a falhas da API:** cache local → fallback → continua funcionando
-- **AbortController:** cancel automático de fetches sobrepostos (race condition eliminada)
-- **Timeout de 8s:** nunca trava aguardando a API
-- **Instituições personalizadas:** adicionar, editar, excluir — persiste entre sessões
-- **sanitização de HTML:** nomes de banco não causam XSS
-- **computeSeries() 1×:** sem recomputação desnecessária por render
-- **Y-axis inteligente:** 54.200 → 54k, 1.500.000 → 1.5M
+> Taxas variam conforme perfil, prazo e valor investido. Consulte a instituição.
 
 ## Deploy
 
 ```bash
-git add -A && git commit -m "feat: simulador v2.0 + bancos personalizados" && git push origin main
+git add -A && git commit -m "feat: simulador v4 + Sicredi, Santander, Itaú + logos" && git push origin main
 ```
-
-GitHub Pages publica em ~1 min. DNS já configurado.
 
 ---
 Desenvolvido por [Anderson Schultz Ribeiro](https://linkedin.com/in/anderson-schultz-ribeiro0001)
