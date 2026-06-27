@@ -1,26 +1,5 @@
 # Changelog — Consumo da Vida
 
-## v5.1.0 — Identidade Premium Azul Tecnológico (2026-06)
-
-### Novo
-- Tema visual premium inspirado em produtos SaaS modernos
-- Fundo tecnológico com rede de conexões em SVG e animação CSS leve
-- Glassmorphism refinado em cards, formulários, modais e simulador
-- Ícones vetoriais consistentes no header, home, benefícios e páginas internas
-- Nova identidade azul-ciano com glow discreto e maior profundidade
-- Novo logotipo aplicado ao header, rodapé e ícones da aplicação
-- Favicon e Apple Touch Icon adicionados
-- `assets/css/premium.css` — camada visual isolada para facilitar manutenção futura
-
-### Melhorado
-- Modo escuro passa a ser o padrão visual, mantendo o modo claro disponível
-- Responsividade revisada em 390 px, 768 px e 1456 px
-- Contraste e legibilidade refinados nos dois temas
-- Navegação mobile mantém apenas um seletor de tema
-- Todas as regras de negócio, cálculos e integrações foram preservados
-
----
-
 ## v5.0.0 — Refatoração Modular (2026-06)
 
 ### Breaking changes

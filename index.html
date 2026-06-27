@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <!-- Anti-flash: aplica tema antes do CSS carregar (evita flash branco) -->
+  <script>
+    (function(){
+      var t=localStorage.getItem('cdv-theme');
+      // dark tech é o padrão — só muda para 'light' se o usuário pediu
+      document.documentElement.setAttribute('data-theme', t==='light' ? 'light' : 'dark');
+    })();
+  </script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Consumo da Vida | Plataforma de Inteligência Financeira</title>
   <meta name="description" content="Plataforma completa de educação financeira: calcule o custo da vida em horas de trabalho, planeje compras com inteligência e simule investimentos com a Selic ao vivo.">
   <meta name="keywords" content="educação financeira, calculadora financeira, planejador de compras, simulador de investimentos, juros compostos, selic">
-  <meta name="theme-color" content="#020914">
+  <meta name="theme-color" content="#040B16">
   <meta property="og:title" content="Consumo da Vida | Plataforma de Inteligência Financeira">
   <meta property="og:description" content="Três ferramentas, um ecossistema: Calculadora de Vida, Planejador de Compras e Simulador de Rendimentos.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://consumodavida.com.br">
   <link rel="canonical" href="https://consumodavida.com.br">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/logo/favicon-32.png">
-  <link rel="apple-touch-icon" href="assets/img/logo/icon-192.png">
 
   <script type="application/ld+json">
   {
@@ -103,10 +110,9 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/responsive.css">
-  <link rel="stylesheet" href="assets/css/premium.css">
+  <link rel="stylesheet" href="assets/css/dark-tech.css">
 </head>
 <body>
-  <div class="ambient-network" aria-hidden="true"></div>
   <a class="skip-link" href="#main-content">Ir para o conteúdo</a>
 
   <!-- ═══ NAVEGAÇÃO ═══ -->
@@ -119,13 +125,13 @@
       </div>
     </button>
     <div class="nav-links" id="navLinks">
-      <button class="nav-link" data-nav="home" onclick="navTo('home')"><span class="nav-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-7h6v7"/></svg></span> Início</button>
-      <button class="nav-link" data-nav="calc" onclick="navTo('calc')"><span class="nav-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span> Calculadora</button>
-      <button class="nav-link" data-nav="plan" onclick="navTo('plan')"><span class="nav-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 9h18"/><path d="m8 15 2 2 5-5"/></svg></span> Planejador</button>
-      <button class="nav-link" data-nav="sim"  onclick="navTo('sim')"><span class="nav-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 2 5-6"/></svg></span> Simulador</button>
+      <button class="nav-link" data-nav="home" onclick="navTo('home')"><span class="nav-ico">🏠</span> Início</button>
+      <button class="nav-link" data-nav="calc" onclick="navTo('calc')"><span class="nav-ico">🕐</span> Calculadora</button>
+      <button class="nav-link" data-nav="plan" onclick="navTo('plan')"><span class="nav-ico">📊</span> Planejador</button>
+      <button class="nav-link" data-nav="sim"  onclick="navTo('sim')"><span class="nav-ico">📈</span> Simulador</button>
     </div>
     <div class="nav-right">
-      <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Alternar para o tema claro"></button>
+      <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" aria-label="Alternar tema">🌙</button>
       <button class="nav-toggle" onclick="toggleMenu()" aria-label="Abrir menu">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
           <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
@@ -139,14 +145,14 @@
 
   <div class="page active" id="page-home" role="main" aria-label="Página inicial">
     <div class="home-hero">
-      <div class="home-eyebrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2-7 4 14 2-7h6"/></svg> Inteligência Financeira</div>
+      <div class="home-eyebrow">✦ Inteligência Financeira</div>
       <h1>Sua <em>vida</em> financeira,<br>organizada e consciente</h1>
       <p>Três ferramentas em um só ecossistema para você entender o impacto das suas decisões, planejar compras com inteligência e fazer seu dinheiro crescer.</p>
       <div class="home-pillars">
-        <span class="home-pillar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/><rect x="10" y="10" width="4" height="4" rx=".5"/></svg>Tecnologia</span>
-        <span class="home-pillar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 17 5-5 4 3 7-8"/><path d="M14 7h6v6"/></svg>Crescimento</span>
-        <span class="home-pillar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15 8.5c-.7-.8-1.7-1.2-3-1.2-1.7 0-3 .8-3 2s1 1.8 3 2.2 3 1 3 2.3-1.3 2.2-3 2.2c-1.4 0-2.5-.5-3.2-1.4M12 5.5v13"/></svg>Economia</span>
-        <span class="home-pillar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 6h14M7 6 3 13h8L7 6ZM17 6l-4 7h8l-4-7ZM8 21h8"/></svg>Equilíbrio</span>
+        <span class="home-pillar"><span class="hp-dot" style="background:var(--azul)"></span>Tecnologia</span>
+        <span class="home-pillar"><span class="hp-dot" style="background:var(--teal)"></span>Crescimento</span>
+        <span class="home-pillar"><span class="hp-dot" style="background:var(--dourado)"></span>Economia</span>
+        <span class="home-pillar"><span class="hp-dot" style="background:var(--marrom)"></span>Equilíbrio</span>
       </div>
     </div>
     <div class="tools-section">
@@ -156,19 +162,19 @@
       </div>
       <div class="tools-grid">
         <button class="tool-card tc-calc" onclick="navTo('calc')">
-          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8 6h8v4H8zM8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg></div>
+          <div class="tool-icon">🕐</div>
           <h3>Calculadora de Vida</h3>
           <p>Descubra quantas horas e dias do seu trabalho um produto realmente custa. Use o Método QDP para decidir com consciência.</p>
           <span class="tool-cta">Calcular custo em vida <span class="arr">→</span></span>
         </button>
         <button class="tool-card tc-plan" onclick="navTo('plan')">
-          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M3 4h2l2.5 11h10l2-7H7"/></svg></div>
+          <div class="tool-icon">📊</div>
           <h3>Planejador de Compras</h3>
           <p>Avalie o peso de uma compra na sua renda, receba um plano de economia personalizado e projeções de desconto à vista.</p>
           <span class="tool-cta">Planejar uma compra <span class="arr">→</span></span>
         </button>
         <button class="tool-card tc-sim" onclick="navTo('sim')">
-          <div class="tool-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 2 5-6"/></svg></div>
+          <div class="tool-icon">📈</div>
           <h3>Simulador de Rendimentos</h3>
           <p>Veja o mesmo dinheiro render de jeitos diferentes com a Selic ao vivo. Compare 8 instituições com linha do tempo interativa.</p>
           <span class="tool-cta">Simular investimentos <span class="arr">→</span></span>
@@ -177,10 +183,10 @@
     </div>
     <div class="benefits">
       <div class="benefits-grid">
-        <div class="benefit"><div class="benefit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></div><h4>Decisões conscientes</h4><p>Entenda o real impacto de cada escolha financeira.</p></div>
-        <div class="benefit"><div class="benefit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4.5V3h6v1.5M9 10h6M9 14h6M9 18h4"/></svg></div><h4>Planejamento claro</h4><p>Metas e cenários adaptados à sua realidade.</p></div>
-        <div class="benefit"><div class="benefit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 17 5-5 4 3 7-8"/><path d="M14 7h6v6"/></svg></div><h4>Patrimônio que cresce</h4><p>Simule juros compostos com dados reais.</p></div>
-        <div class="benefit"><div class="benefit-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18M5 6h14M7 6 3 13h8L7 6ZM17 6l-4 7h8l-4-7ZM8 21h8"/></svg></div><h4>Vida equilibrada</h4><p>Liberdade financeira com bem-estar e propósito.</p></div>
+        <div class="benefit"><div class="benefit-ico">🧠</div><h4>Decisões conscientes</h4><p>Entenda o real impacto de cada escolha financeira.</p></div>
+        <div class="benefit"><div class="benefit-ico">🎯</div><h4>Planejamento claro</h4><p>Metas e cenários adaptados à sua realidade.</p></div>
+        <div class="benefit"><div class="benefit-ico">🌱</div><h4>Patrimônio que cresce</h4><p>Simule juros compostos com dados reais.</p></div>
+        <div class="benefit"><div class="benefit-ico">⚖️</div><h4>Vida equilibrada</h4><p>Liberdade financeira com bem-estar e propósito.</p></div>
       </div>
     </div>
   </div>
@@ -188,7 +194,7 @@
   <!-- ═══ CALCULADORA DE VIDA ═══ -->
   <div class="page" id="page-calc" role="main" aria-label="Calculadora de Vida">
     <div class="tool-header">
-      <div class="th-badge b-calc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2"/><path d="M8 6h8v4H8zM8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></svg> Calculadora de Vida</div>
+      <div class="th-badge b-calc">🕐 Calculadora de Vida</div>
       <h1>Quanto da sua <em>vida</em> custa essa compra?</h1>
       <p>Descubra em horas e dias reais quanto do seu tempo de vida produtiva é necessário para adquirir um produto.</p>
     </div>
@@ -240,7 +246,7 @@
           <div class="reflection-text" id="refl-text"></div>
         </div>
         <div class="cross-cta">
-          <div class="cross-cta-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 9h18"/><path d="m8 15 2 2 5-5"/></svg></div>
+          <div class="cross-cta-ico">📊</div>
           <div class="cross-cta-text"><strong>Quer planejar essa compra?</strong><span>Leve esses valores para o Planejador e monte um plano de economia.</span></div>
           <button class="cross-cta-btn" onclick="calcToPlanejador()">Abrir Planejador →</button>
         </div>
@@ -270,7 +276,7 @@
   <!-- ═══ PLANEJADOR DE COMPRAS ═══ -->
   <div class="page" id="page-plan" role="main" aria-label="Planejador de Compras">
     <div class="tool-header">
-      <div class="th-badge b-plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 2v4M16 2v4M3 9h18"/><path d="m8 15 2 2 5-5"/></svg> Planejador de Compras</div>
+      <div class="th-badge b-plan">📊 Planejador de Compras</div>
       <h1>Planeje com <em>inteligência</em> antes de decidir</h1>
       <p>Avalie o peso da compra na sua renda e receba um plano de economia personalizado, com projeções e recomendações.</p>
     </div>
@@ -327,7 +333,7 @@
           <div id="discount-section"></div>
         </div>
         <div class="cross-cta">
-          <div class="cross-cta-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 2 5-6"/></svg></div>
+          <div class="cross-cta-ico">📈</div>
           <div class="cross-cta-text"><strong>E se você investisse esse valor?</strong><span>Veja quanto renderia no Simulador de Rendimentos com a Selic ao vivo.</span></div>
           <button class="cross-cta-btn" onclick="planToSimulador()">Abrir Simulador →</button>
         </div>
@@ -342,7 +348,7 @@
   <!-- ═══ SIMULADOR DE RENDIMENTOS ═══ -->
   <div class="page" id="page-sim" role="main" aria-label="Simulador de Rendimentos">
     <div class="tool-header">
-      <div class="th-badge b-sim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 2 5-6"/></svg> Simulador de Rendimentos</div>
+      <div class="th-badge b-sim">📈 Simulador de Rendimentos</div>
       <h1>A magia do dinheiro que <em>rende</em> parado</h1>
       <p>Coloque um valor, escolha o tempo e veja o mesmo dinheiro crescer de jeitos diferentes — com a Selic ao vivo do Banco Central.</p>
     </div>

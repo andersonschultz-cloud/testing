@@ -1,0 +1,714 @@
+/* ════════════════════════════════════════════════════════════════
+   CONSUMO DA VIDA — dark-tech.css  v6.0
+   Tema Premium Dark Tech: Glassmorphism, Rede Tecnológica, Glow Ciano
+   Inspirado em: Stripe, Vercel, Linear, Arc Browser
+   Fundo: #040B16 · Primário: #00B4FF · Acento: #FFB800
+   NOTA: Arquivo carregado APÓS todos os demais CSS.
+         Overrides com !important garantem precedência.
+         [data-theme="light"] restaura modo claro ao final.
+════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   1. FUNDO — Azul noturno + rede tecnológica
+═══════════════════════════════════════════ */
+
+html { background: #040B16; }
+
+body {
+  background-color: #040B16;
+  background-image:
+    radial-gradient(ellipse 900px 700px at 12% 15%, rgba(0,100,200,.22) 0%, transparent 68%),
+    radial-gradient(ellipse 700px 600px at 88% 80%, rgba(0,50,140,.18) 0%, transparent 68%),
+    radial-gradient(ellipse 500px 400px at 55% 42%, rgba(0,20,60,.10) 0%, transparent 70%);
+  color: var(--text);
+}
+
+/* Rede tecnológica (padrão pontilhado ciano) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('../img/network-bg.svg');
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+  animation: networkPulse 10s ease-in-out infinite;
+}
+
+/* Ponto de luz flutuante — canto superior direito */
+body::after {
+  content: '';
+  position: fixed;
+  width: 700px;
+  height: 700px;
+  top: -250px;
+  right: -200px;
+  background: radial-gradient(circle, rgba(0,180,255,.07) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  animation: orbFloat 14s ease-in-out infinite;
+}
+
+@keyframes networkPulse {
+  0%, 100% { opacity: 0.48; }
+  50%       { opacity: 0.62; }
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0,0) scale(1);    opacity: .6; }
+  40%       { transform: translate(-40px,30px) scale(1.05); opacity: .8; }
+  70%       { transform: translate(25px,-20px) scale(.96); opacity: .5; }
+}
+
+/* Tudo acima do fundo animado */
+.topnav, .page, footer, .modal-overlay { position: relative; z-index: 1; }
+
+/* ═══════════════════════════════════════════
+   2. ANIMAÇÕES — Micro-interações elegantes
+═══════════════════════════════════════════ */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); filter: blur(3px); }
+  to   { opacity: 1; transform: translateY(0);    filter: blur(0); }
+}
+.page.active { animation: fadeIn .38s cubic-bezier(.16,1,.3,1) both; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 18px rgba(0,180,255,.28); }
+  50%       { box-shadow: 0 0 32px rgba(0,180,255,.52); }
+}
+
+/* ═══════════════════════════════════════════
+   3. NAVEGAÇÃO — Glassmorphism premium
+═══════════════════════════════════════════ */
+
+.topnav {
+  background: rgba(4,11,22,.88) !important;
+  border-bottom: 1px solid rgba(0,180,255,.14) !important;
+  border-top: none !important;
+  box-shadow: 0 1px 0 rgba(0,180,255,.07), 0 4px 24px rgba(0,0,0,.50) !important;
+  backdrop-filter: blur(28px) saturate(220%);
+  -webkit-backdrop-filter: blur(28px) saturate(220%);
+}
+
+/* Logo com aura ciano */
+.nav-logo {
+  box-shadow: 0 0 16px rgba(0,180,255,.45) !important;
+  border: 1.5px solid rgba(0,180,255,.30) !important;
+}
+
+/* Título: CONSUMO branco, DA VIDA ciano */
+.nav-title { color: #FFFFFF !important; letter-spacing: .3px; font-weight: 700; }
+.nav-title span { color: var(--azul) !important; font-style: italic; }
+.nav-sub { color: rgba(255,255,255,.40) !important; letter-spacing: 1.3px; }
+
+/* Links de navegação */
+.nav-link {
+  color: var(--text2) !important;
+  border: 1px solid transparent;
+  transition: all .22s cubic-bezier(.16,1,.3,1);
+}
+.nav-link:hover {
+  background: rgba(0,180,255,.10) !important;
+  border-color: rgba(0,180,255,.22) !important;
+  color: var(--azul) !important;
+}
+/* Link ATIVO: sólido ciano + texto escuro (contraste 8.78:1 ✓ AAA) */
+.nav-link.active {
+  background: var(--azul) !important;
+  color: #040B16 !important;
+  font-weight: 700;
+  border-color: var(--azul) !important;
+  box-shadow: 0 0 22px rgba(0,180,255,.55), 0 2px 8px rgba(0,0,0,.50) !important;
+}
+
+/* Botão de tema */
+.theme-btn {
+  background: rgba(0,180,255,.09) !important;
+  border: 1px solid rgba(0,180,255,.24) !important;
+  color: var(--azul) !important;
+}
+.theme-btn:hover {
+  background: rgba(0,180,255,.20) !important;
+  box-shadow: 0 0 14px rgba(0,180,255,.30) !important;
+}
+
+/* ═══════════════════════════════════════════
+   4. CARDS BÁSICOS — Glassmorphism
+═══════════════════════════════════════════ */
+
+.card {
+  background: rgba(7,21,38,.78) !important;
+  border: 1px solid rgba(0,180,255,.15) !important;
+  box-shadow:
+    0 4px 32px rgba(0,0,0,.60),
+    inset 0 1px 0 rgba(255,255,255,.04) !important;
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  transition: border-color .3s, box-shadow .3s, transform .3s cubic-bezier(.16,1,.3,1);
+}
+.card:hover {
+  border-color: rgba(0,180,255,.32) !important;
+  box-shadow:
+    0 8px 48px rgba(0,0,0,.70),
+    0 0 28px rgba(0,180,255,.11),
+    inset 0 1px 0 rgba(255,255,255,.06) !important;
+}
+
+/* ═══════════════════════════════════════════
+   5. TOOL CARDS — Premium com borda glow
+═══════════════════════════════════════════ */
+
+.tool-card {
+  background: rgba(7,21,38,.78) !important;
+  border: 1px solid rgba(0,180,255,.15) !important;
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  box-shadow: 0 4px 32px rgba(0,0,0,.60) !important;
+}
+/* Barra superior sempre visível */
+.tool-card::before { opacity: 1 !important; }
+.tool-card.tc-calc::before { background: linear-gradient(90deg, var(--azul-dk), var(--azul)) !important; }
+.tool-card.tc-plan::before { background: linear-gradient(90deg, var(--teal-dk), var(--teal)) !important; }
+.tool-card.tc-sim::before  { background: linear-gradient(90deg, var(--dourado-dk), var(--dourado)) !important; }
+
+.tool-card:hover {
+  transform: translateY(-7px) !important;
+  border-color: rgba(0,180,255,.42) !important;
+  box-shadow:
+    0 16px 60px rgba(0,0,0,.75),
+    0 0 32px rgba(0,180,255,.18) !important;
+}
+
+/* Ícones maiores com brilho */
+.tool-icon {
+  width: 62px !important; height: 62px !important;
+  font-size: 30px !important; border-radius: 16px !important;
+  background: rgba(0,180,255,.12) !important;
+  border: 1px solid rgba(0,180,255,.28) !important;
+  box-shadow: 0 0 18px rgba(0,180,255,.18) !important;
+}
+
+/* CTAs das tool cards */
+.tc-calc .tool-cta { color: var(--azul)  !important; }
+.tc-plan .tool-cta { color: var(--teal)  !important; }
+.tc-sim  .tool-cta { color: var(--dourado-lt) !important; }
+.tool-cta .arr { transition: transform .22s !important; }
+.tool-card:hover .tool-cta .arr { transform: translateX(4px); }
+
+/* ═══════════════════════════════════════════
+   6. HOME HERO — Visual impactante
+═══════════════════════════════════════════ */
+
+.home-hero { background: none !important; }
+
+.home-eyebrow {
+  background: rgba(0,180,255,.10) !important;
+  border: 1px solid rgba(0,180,255,.28) !important;
+  color: var(--azul) !important;
+  backdrop-filter: blur(8px);
+}
+
+.home-hero h1 {
+  color: #FFFFFF !important;
+  text-shadow: 0 0 80px rgba(0,180,255,.15);
+}
+.home-hero h1 em { color: var(--azul) !important; font-style: italic; }
+.home-hero p { color: var(--text2) !important; }
+
+/* Pillars — ghost glass */
+.home-pillar {
+  background: rgba(7,21,38,.72) !important;
+  border: 1px solid rgba(0,180,255,.18) !important;
+  color: var(--text2) !important;
+  backdrop-filter: blur(10px);
+  transition: all .22s;
+}
+.home-pillar:hover {
+  border-color: rgba(0,180,255,.40) !important;
+  color: var(--azul) !important;
+  background: rgba(0,180,255,.10) !important;
+}
+
+/* Seções da home */
+.tools-heading h2 { color: #FFFFFF !important; }
+.tools-heading p  { color: var(--text2) !important; }
+.tool-card h3 { color: #FFFFFF !important; }
+.tool-card p  { color: var(--text2) !important; }
+
+/* Benefits */
+.benefit-ico {
+  background: rgba(7,21,38,.80) !important;
+  border: 1px solid rgba(0,180,255,.16) !important;
+  box-shadow: 0 0 12px rgba(0,180,255,.10) !important;
+}
+.benefit h4 { color: #FFFFFF !important; }
+.benefit p  { color: var(--text2) !important; }
+
+/* ═══════════════════════════════════════════
+   7. BOTÕES — Ciano com glow
+═══════════════════════════════════════════ */
+
+.btn-calc {
+  background: linear-gradient(135deg, #0078B8, #00B4FF) !important;
+  color: #040B16 !important; /* 8.78:1 AAA ✓ */
+  font-weight: 700 !important;
+  border: 1px solid rgba(0,180,255,.35) !important;
+  box-shadow: 0 0 24px rgba(0,180,255,.40), 0 4px 16px rgba(0,0,0,.55) !important;
+  position: relative; overflow: hidden;
+  letter-spacing: .3px;
+}
+.btn-calc::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,.14) 0%, transparent 55%);
+  pointer-events: none;
+}
+.btn-calc:hover {
+  background: linear-gradient(135deg, #0090D4, #00D5FF) !important;
+  box-shadow: 0 0 38px rgba(0,180,255,.65), 0 6px 24px rgba(0,0,0,.65) !important;
+  transform: translateY(-2px);
+}
+.btn-calc:active { transform: scale(.98); }
+
+.btn-calc.btn-teal {
+  background: linear-gradient(135deg, #007A80, #00C8D4) !important;
+  color: #040B16 !important;
+  box-shadow: 0 0 24px rgba(0,200,210,.35), 0 4px 16px rgba(0,0,0,.55) !important;
+}
+.btn-calc.btn-teal:hover {
+  box-shadow: 0 0 38px rgba(0,200,210,.60), 0 6px 24px rgba(0,0,0,.65) !important;
+}
+
+.btn-yes {
+  background: linear-gradient(135deg, #0078B8, #00B4FF) !important;
+  color: #040B16 !important;
+  box-shadow: 0 0 18px rgba(0,180,255,.35) !important;
+}
+
+.cross-cta-btn {
+  background: linear-gradient(135deg, #92400E, #B45309) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255,184,0,.22) !important;
+  box-shadow: 0 0 18px rgba(184,80,9,.30), 0 4px 16px rgba(0,0,0,.55) !important;
+}
+.cross-cta-btn:hover {
+  box-shadow: 0 0 30px rgba(217,119,6,.55), 0 6px 24px rgba(0,0,0,.65) !important;
+}
+
+.btn-share { color: var(--text2) !important; border-color: rgba(0,180,255,.20) !important; background: rgba(0,180,255,.06) !important; }
+.btn-share:hover { background: rgba(0,180,255,.14) !important; color: var(--azul) !important; border-color: var(--azul) !important; }
+
+.btn-refresh { background: rgba(0,180,255,.09) !important; border-color: rgba(0,180,255,.22) !important; color: var(--azul) !important; }
+.btn-refresh:hover { background: rgba(0,180,255,.20) !important; box-shadow: 0 0 12px rgba(0,180,255,.28) !important; }
+.btn-add-bank { color: var(--text3) !important; border-color: rgba(0,180,255,.18) !important; }
+.btn-add-bank:hover { border-color: var(--azul) !important; color: var(--azul) !important; background: rgba(0,180,255,.08) !important; }
+.btn-clear:hover { color: var(--red) !important; }
+
+/* ═══════════════════════════════════════════
+   8. FORMULÁRIOS — Dark glass inputs
+═══════════════════════════════════════════ */
+
+input[type=text], input[type=number], .money-input-plain, select {
+  background: rgba(4,11,22,.82) !important;
+  border: 1.5px solid rgba(0,180,255,.22) !important;
+  color: #FFFFFF !important;
+  transition: border-color .2s, box-shadow .2s !important;
+}
+input[type=text]:focus, input[type=number]:focus,
+.money-input-plain:focus, select:focus {
+  border-color: var(--azul) !important;
+  box-shadow: 0 0 0 3px rgba(0,180,255,.22), 0 0 14px rgba(0,180,255,.14) !important;
+  background: rgba(4,11,22,.92) !important;
+}
+::placeholder { color: rgba(255,255,255,.28) !important; opacity: 1 !important; }
+
+.money-prefix {
+  background: rgba(4,11,22,.82) !important;
+  border: 1.5px solid rgba(0,180,255,.22) !important;
+}
+.money-prefix:focus-within {
+  border-color: var(--azul) !important;
+  box-shadow: 0 0 0 3px rgba(0,180,255,.22) !important;
+}
+.money-prefix i { color: rgba(255,255,255,.40) !important; }
+.money-prefix input { color: #FFFFFF !important; }
+
+select { 
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2300B4FF' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 14px center !important;
+}
+option { background: #071524; color: #FFFFFF; }
+
+/* Help icon */
+.help-icon { background: rgba(0,180,255,.12) !important; color: var(--azul) !important; border: 1px solid rgba(0,180,255,.25) !important; }
+.tip { background: #071524 !important; color: #FFFFFF !important; border: 1px solid rgba(0,180,255,.22) !important; }
+.tip::after { border-top-color: #071524 !important; }
+
+/* Section labels */
+.section-label { color: rgba(0,180,255,.60) !important; letter-spacing: 1px; }
+.field-label { color: var(--text2) !important; }
+
+/* ═══════════════════════════════════════════
+   9. METRICS — Indicadores com destaque
+═══════════════════════════════════════════ */
+
+.metric-card {
+  background: rgba(4,11,22,.75) !important;
+  border: 1px solid rgba(0,180,255,.14) !important;
+  border-left: 3px solid rgba(0,180,255,.25) !important;
+}
+.metric-card:hover {
+  border-color: rgba(0,180,255,.35) !important;
+  border-left-color: var(--azul) !important;
+  box-shadow: 0 0 20px rgba(0,180,255,.12) !important;
+}
+.m-val { color: #FFFFFF !important; }
+.m-val.azul { color: var(--azul) !important; }
+.m-val.teal { color: var(--teal) !important; }
+.m-label { color: var(--text3) !important; }
+.m-unit  { color: var(--text3) !important; }
+
+/* ═══════════════════════════════════════════
+   10. BADGES & IMPACT
+═══════════════════════════════════════════ */
+
+.impact-badge.low { background: rgba(0,200,210,.13) !important; border: 1px solid rgba(0,200,210,.28) !important; color: var(--teal-lt) !important; }
+.impact-badge.mod { background: rgba(0,180,255,.13) !important; border: 1px solid rgba(0,180,255,.28) !important; color: var(--azul) !important; }
+.impact-badge.high { background: rgba(255,184,0,.13) !important; border: 1px solid rgba(255,184,0,.28) !important; color: var(--dourado-lt) !important; }
+.impact-badge.veryhigh { background: rgba(255,77,77,.13) !important; border: 1px solid rgba(255,77,77,.28) !important; color: var(--red) !important; }
+
+.home-eyebrow,.th-badge.b-calc { background: rgba(0,180,255,.11) !important; color: var(--azul) !important; border-color: rgba(0,180,255,.28) !important; }
+.th-badge.b-plan { background: rgba(0,200,210,.11) !important; color: var(--teal-lt) !important; border-color: rgba(0,200,210,.28) !important; }
+.th-badge.b-sim  { background: rgba(255,184,0,.11) !important; color: var(--dourado-lt) !important; border-color: rgba(255,184,0,.28) !important; }
+
+/* Peso badges */
+.peso-badge.muito-leve,.peso-badge.leve { background: rgba(0,200,210,.13) !important; color: var(--teal-lt) !important; }
+.peso-badge.moderada { background: rgba(255,184,0,.13) !important; color: var(--dourado) !important; }
+.peso-badge.pesada,.peso-badge.muito-pesada { background: rgba(255,77,77,.13) !important; color: var(--red) !important; }
+
+.opt-custom-tag { background: rgba(0,180,255,.14) !important; color: var(--azul) !important; }
+.opt-treasury-tag { background: rgba(0,180,255,.14) !important; color: var(--azul) !important; }
+
+/* ═══════════════════════════════════════════
+   11. MSG-STRIP & CROSS-CTA
+═══════════════════════════════════════════ */
+
+.msg-strip { background: rgba(0,180,255,.09) !important; border-left-color: var(--azul) !important; color: var(--text2) !important; }
+
+.cross-cta { background: rgba(0,100,160,.14) !important; border: 1px solid rgba(0,180,255,.20) !important; backdrop-filter: blur(12px); }
+.cross-cta-text strong { color: #FFFFFF !important; }
+.cross-cta-text span   { color: var(--text2) !important; }
+
+/* ═══════════════════════════════════════════
+   12. SIMULADOR — Controles premium
+═══════════════════════════════════════════ */
+
+.sim-selic-card {
+  background: rgba(0,80,140,.18) !important;
+  border: 1px solid rgba(0,180,255,.26) !important;
+}
+.selic-head h3 { color: #FFFFFF !important; }
+
+.sim-hero-card {
+  background: linear-gradient(150deg, rgba(7,21,38,.88) 0%, rgba(0,50,100,.42) 100%) !important;
+  border: 1px solid rgba(0,180,255,.26) !important;
+  box-shadow: 0 0 44px rgba(0,180,255,.12), 0 4px 40px rgba(0,0,0,.70) !important;
+}
+.sim-hero-value { color: var(--azul) !important; text-shadow: 0 0 24px rgba(0,180,255,.28) !important; }
+.sim-hero-leader { background: rgba(0,200,210,.16) !important; color: var(--teal-lt) !important; border: 1px solid rgba(0,200,210,.28) !important; }
+.sim-hero-sub b { color: var(--teal-lt) !important; }
+.sim-hero-label { color: var(--text2) !important; }
+.scrub-time { color: var(--azul) !important; }
+.scrub-label { color: var(--text3) !important; }
+.sim-disclaimer { background: rgba(0,180,255,.07) !important; border-left-color: var(--azul) !important; color: var(--text3) !important; }
+
+/* Opt-list */
+.opt-row { background: rgba(4,11,22,.75) !important; border: 1px solid rgba(0,180,255,.13) !important; }
+.opt-row:not(.off):hover { border-color: rgba(0,180,255,.38) !important; background: rgba(0,50,100,.30) !important; }
+.opt-name { color: #FFFFFF !important; }
+.opt-sub,.opt-rate,.opt-separator span { color: var(--text3) !important; }
+
+/* Slider */
+.years-display strong { color: var(--azul) !important; }
+.year-slider::-webkit-slider-runnable-track { background: rgba(0,180,255,.18) !important; }
+.year-slider::-moz-range-track { background: rgba(0,180,255,.18) !important; }
+.year-slider::-webkit-slider-thumb { box-shadow: 0 0 14px rgba(0,180,255,.65) !important; }
+
+/* IR toggle */
+.ir-toggle { background: rgba(4,11,22,.75) !important; border: 1px solid rgba(0,180,255,.13) !important; }
+.ir-toggle-text strong { color: #FFFFFF !important; }
+.ir-toggle-text span { color: var(--text3) !important; }
+.switch-slider { background: rgba(0,180,255,.18) !important; border: 1px solid rgba(0,180,255,.25) !important; }
+.switch input:checked + .switch-slider { background: var(--azul) !important; }
+
+/* CDI box */
+.cdi-box { background: rgba(0,180,255,.09) !important; border: 1px solid rgba(0,180,255,.22) !important; }
+.cdi-box span { color: var(--text3) !important; }
+.cdi-box strong { color: var(--azul) !important; font-size: 20px !important; }
+
+/* Selic status */
+.selic-status.ok      { color: var(--teal-lt) !important; }
+.selic-status.loading { color: var(--azul) !important; }
+.selic-status.warn    { color: var(--dourado-lt) !important; }
+.selic-status.error   { color: var(--red) !important; }
+.selic-status.idle    { color: var(--text3) !important; }
+
+/* Treasury status */
+.treasury-status-line.ok      { color: var(--teal-lt) !important; }
+.treasury-status-line.loading { color: var(--azul) !important; }
+.treasury-status-line.warn    { color: var(--dourado-lt) !important; }
+.treasury-status-line.error   { color: var(--red) !important; }
+.treasury-status-line.idle    { color: var(--text3) !important; }
+.ipca-row { background: rgba(4,11,22,.75) !important; border-color: rgba(0,180,255,.14) !important; }
+.ipca-input-wrap input { background: rgba(4,11,22,.82) !important; border-color: rgba(0,180,255,.25) !important; color: #FFFFFF !important; }
+
+/* Custom form */
+.custom-form { background: rgba(4,11,22,.82) !important; border-color: rgba(0,180,255,.16) !important; }
+.cb-form-title { color: #FFFFFF !important; }
+.cb-taxable-row { color: var(--text2) !important; }
+.opt-action-btn:hover { background: rgba(0,180,255,.14) !important; color: var(--azul) !important; }
+.opt-del-btn:hover { background: rgba(255,77,77,.14) !important; color: var(--red) !important; }
+
+/* ═══════════════════════════════════════════
+   13. COMPARISON CARDS — Glass premium
+═══════════════════════════════════════════ */
+
+.cmp-card {
+  background: rgba(7,21,38,.80) !important;
+  border: 1px solid rgba(0,180,255,.14) !important;
+  backdrop-filter: blur(18px);
+}
+.cmp-card:hover { border-color: rgba(0,180,255,.30) !important; box-shadow: 0 0 24px rgba(0,180,255,.10), 0 8px 40px rgba(0,0,0,.70) !important; }
+.cmp-card.leader { border-color: rgba(0,200,210,.45) !important; box-shadow: 0 0 28px rgba(0,200,210,.18), 0 4px 40px rgba(0,0,0,.70) !important; }
+.cmp-card.leader::before { background: linear-gradient(90deg, var(--teal), var(--teal-lt)) !important; }
+.cmp-name { color: #FFFFFF !important; }
+.cmp-product { color: var(--text3) !important; }
+.cmp-lbl { color: var(--text3) !important; }
+.cmp-val { color: #FFFFFF !important; }
+.cmp-val.accent { color: var(--teal-lt) !important; font-size: 16px !important; }
+.cmp-pct-badge { background: rgba(0,180,255,.12) !important; color: var(--azul) !important; }
+.cmp-card.leader .cmp-pct-badge { background: rgba(0,200,210,.15) !important; color: var(--teal-lt) !important; }
+.cmp-leader-badge { background: rgba(0,200,210,.15) !important; color: var(--teal-lt) !important; }
+.cmp-pct-gain { color: var(--text2) !important; }
+.cmp-ir-note { color: var(--text3) !important; }
+.cmp-footer { border-top-color: rgba(0,180,255,.12) !important; }
+
+/* Logo nos opt-rows */
+.opt-logo { background: rgba(255,255,255,.08) !important; border-color: rgba(0,180,255,.20) !important; }
+.rank-logo,.cmp-logo { background: rgba(255,255,255,.08) !important; border-color: rgba(0,180,255,.20) !important; }
+
+/* ═══════════════════════════════════════════
+   14. PLANEJADOR — Dark glass
+═══════════════════════════════════════════ */
+
+.scenario-card { background: rgba(4,11,22,.75) !important; border-color: rgba(0,180,255,.14) !important; }
+.scenario-card:hover { border-color: rgba(0,180,255,.38) !important; box-shadow: 0 0 18px rgba(0,180,255,.10) !important; }
+.scenario-card.scenario-custom { border-color: var(--teal) !important; }
+.sc-label,.progress-label,.sc-months { color: var(--text3) !important; }
+.sc-amount { color: var(--teal-lt) !important; }
+
+.progress-bar-track { background: rgba(0,180,255,.14) !important; }
+.progress-bar-fill { background: linear-gradient(90deg, #0078B8, #00B4FF) !important; }
+
+.discount-card { background: rgba(4,11,22,.75) !important; border-color: rgba(0,180,255,.14) !important; }
+.discount-card:hover { border-color: rgba(0,200,210,.38) !important; }
+.d-label { color: var(--text3) !important; }
+.d-price { color: #FFFFFF !important; }
+.d-saving { color: var(--teal-lt) !important; }
+.discount-tip { background: rgba(0,200,210,.10) !important; border-left-color: var(--teal) !important; color: var(--text2) !important; }
+.peso-desc { border-left-color: var(--teal) !important; color: var(--text2) !important; }
+.rec-item { border-bottom-color: rgba(0,180,255,.10) !important; color: var(--text2) !important; }
+
+.plan-metric { background: rgba(4,11,22,.75) !important; border-color: rgba(0,180,255,.14) !important; }
+.prefill-hint { color: var(--azul) !important; }
+.copy-ok { color: var(--teal-lt) !important; }
+
+/* ═══════════════════════════════════════════
+   15. MODAL QDP — Escuro premium
+═══════════════════════════════════════════ */
+
+.modal-overlay { background: rgba(2,5,12,.88) !important; backdrop-filter: blur(10px); }
+.modal {
+  background: rgba(7,21,38,.97) !important;
+  border: 1px solid rgba(0,180,255,.22) !important;
+  box-shadow: 0 0 60px rgba(0,180,255,.14), 0 24px 80px rgba(0,0,0,.85) !important;
+  backdrop-filter: blur(28px);
+}
+.modal h2 { color: #FFFFFF !important; }
+.modal-sub { color: var(--text2) !important; }
+.modal-close { background: rgba(0,180,255,.10) !important; color: var(--azul) !important; border: 1px solid rgba(0,180,255,.22) !important; }
+.modal-eyebrow { color: var(--azul) !important; }
+.modal-eyebrow span { background: var(--azul) !important; }
+.qdp-step { background: rgba(4,11,22,.75) !important; border-color: rgba(0,180,255,.14) !important; }
+.qdp-step:hover { border-color: rgba(0,180,255,.35) !important; }
+.qdp-letter.q { background: rgba(255,184,0,.14) !important; color: var(--dourado) !important; }
+.qdp-letter.d { background: rgba(0,180,255,.14) !important; color: var(--azul) !important; }
+.qdp-letter.p { background: rgba(0,200,210,.14) !important; color: var(--teal-lt) !important; }
+.qdp-title { color: #FFFFFF !important; }
+.qdp-desc  { color: var(--text2) !important; }
+.modal-quote { background: rgba(0,180,255,.07) !important; border-left-color: var(--azul) !important; color: var(--text2) !important; }
+.time-reminder { background: rgba(0,180,255,.09) !important; color: var(--azul) !important; border-radius: 10px; }
+.final-q { color: #FFFFFF !important; }
+.btn-reflect { background: rgba(0,180,255,.08) !important; border-color: rgba(0,180,255,.22) !important; color: var(--text2) !important; }
+.btn-reflect:hover { border-color: var(--azul) !important; color: var(--azul) !important; }
+
+/* ═══════════════════════════════════════════
+   16. REFLECTION & HISTORY
+═══════════════════════════════════════════ */
+
+.reflection-card { background: linear-gradient(135deg, rgba(7,21,38,.82), rgba(4,11,22,.70)) !important; border-color: rgba(0,180,255,.10) !important; }
+.reflection-label { color: rgba(0,180,255,.60) !important; }
+.reflection-text { color: var(--text2) !important; }
+
+.history-card { background: rgba(7,21,38,.78) !important; }
+.hist-main { color: #FFFFFF !important; }
+.hist-sub  { color: var(--text3) !important; }
+.hist-item { border-bottom-color: rgba(0,180,255,.10) !important; }
+.hist-del { color: var(--text3) !important; }
+.hist-del:hover { color: var(--red) !important; }
+
+/* ═══════════════════════════════════════════
+   17. FOOTER — Dark glass
+═══════════════════════════════════════════ */
+
+footer {
+  background: rgba(4,11,22,.92) !important;
+  border-top: 1px solid rgba(0,180,255,.12) !important;
+  position: relative; z-index: 1;
+}
+footer::before { background: linear-gradient(90deg, var(--azul-dk), var(--azul), var(--teal), var(--dourado)) !important; }
+.footer-brand { color: var(--azul) !important; }
+.footer-brand span { color: var(--azul-lt) !important; }
+.footer-link { color: var(--azul) !important; }
+.footer-credits { color: var(--text3) !important; }
+.footer-pillars { color: var(--text3) !important; }
+
+/* Scrollbar ciano */
+::-webkit-scrollbar-track { background: rgba(4,11,22,.50) !important; }
+::-webkit-scrollbar-thumb { background: rgba(0,180,255,.28) !important; border-color: transparent !important; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,180,255,.55) !important; }
+
+/* Focus rings — ciano */
+:focus-visible { outline-color: var(--azul) !important; }
+.btn-calc:focus-visible,.nav-link:focus-visible,.tool-card:focus-visible,
+.btn-refresh:focus-visible,.btn-add-bank:focus-visible,.theme-btn:focus-visible {
+  box-shadow: 0 0 0 3px rgba(0,180,255,.45) !important;
+}
+
+/* Greeting */
+.greeting,.greeting-sub { color: #FFFFFF !important; }
+
+/* Chart section */
+.chart-header { color: var(--text2) !important; }
+
+/* ═══════════════════════════════════════════
+   18. MODO CLARO — Restaura visual original
+═══════════════════════════════════════════ */
+
+[data-theme="light"] html,[data-theme="light"] body {
+  background: #F0F1F5 !important;
+  background-image: none !important;
+  color: #0F172A !important;
+}
+[data-theme="light"] body::before,
+[data-theme="light"] body::after { display: none !important; }
+
+[data-theme="light"] .card,
+[data-theme="light"] .tool-card,
+[data-theme="light"] .cmp-card {
+  background: #FFFFFF !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-color: #D2DCE7 !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06) !important;
+}
+
+[data-theme="light"] .topnav {
+  background: rgba(240,241,245,.90) !important;
+  border-bottom-color: #D2DCE7 !important;
+  backdrop-filter: blur(20px) !important;
+  border-top: none !important;
+  box-shadow: 0 1px 0 #D2DCE7, 0 2px 8px rgba(0,0,0,.04) !important;
+}
+[data-theme="light"] .nav-title { color: #2563EB !important; }
+[data-theme="light"] .nav-title span { color: #B45309 !important; font-style: normal !important; }
+[data-theme="light"] .nav-sub { color: #525A6A !important; }
+[data-theme="light"] .nav-link { color: #374151 !important; border-color: transparent !important; }
+[data-theme="light"] .nav-link:hover { background: #DBEAFE !important; color: #1E40AF !important; border-color: transparent !important; }
+[data-theme="light"] .nav-link.active { background: #2563EB !important; color: #FFFFFF !important; box-shadow: 0 2px 8px rgba(37,99,235,.25) !important; }
+[data-theme="light"] .nav-logo { box-shadow: 0 2px 8px rgba(37,99,235,.20) !important; border: none !important; }
+[data-theme="light"] .theme-btn { background: #F0F1F5 !important; border-color: #BFC9D4 !important; color: #374151 !important; }
+
+[data-theme="light"] .btn-calc { background: linear-gradient(135deg,#1E40AF,#2563EB) !important; color: #FFFFFF !important; border: none !important; box-shadow: 0 1px 2px rgba(30,64,175,.25), 0 4px 16px rgba(37,99,235,.22) !important; }
+[data-theme="light"] .btn-calc:hover { background: linear-gradient(135deg,#1C3B9E,#1E40AF) !important; box-shadow: 0 4px 16px rgba(37,99,235,.35) !important; }
+[data-theme="light"] .btn-calc::after { display: none; }
+[data-theme="light"] .btn-calc.btn-teal { background: linear-gradient(135deg,var(--teal-dk),var(--teal)) !important; color: #FFFFFF !important; }
+
+[data-theme="light"] input[type=text],[data-theme="light"] input[type=number],
+[data-theme="light"] .money-input-plain,[data-theme="light"] select {
+  background: #FFFFFF !important; color: #0F172A !important;
+  border-color: #7C8EA2 !important;
+}
+[data-theme="light"] .money-prefix { background: #FFFFFF !important; border-color: #7C8EA2 !important; }
+[data-theme="light"] .money-prefix i { color: #525A6A !important; }
+[data-theme="light"] .money-prefix input { color: #0F172A !important; }
+[data-theme="light"] ::placeholder { color: #525A6A !important; }
+[data-theme="light"] option { background: #FFFFFF; color: #0F172A; }
+[data-theme="light"] select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23525A6A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important; }
+
+[data-theme="light"] .metric-card { background: #F7F9FB !important; border-color: #D2DCE7 !important; border-left-color: #DBEAFE !important; }
+[data-theme="light"] .m-val,.m-label,.m-unit { color: inherit !important; }
+
+[data-theme="light"] .opt-row { background: #FFFFFF !important; border-color: #BFC9D4 !important; }
+[data-theme="light"] .ir-toggle { background: #F7F9FB !important; border-color: #D2DCE7 !important; }
+[data-theme="light"] .custom-form { background: #F7F9FB !important; border-color: #D2DCE7 !important; }
+[data-theme="light"] .cdi-box { background: #F7F9FB !important; border-color: #D2DCE7 !important; }
+[data-theme="light"] .cdi-box strong { color: #0F766E !important; }
+[data-theme="light"] .ipca-row { background: #F7F9FB !important; border-color: #D2DCE7 !important; }
+[data-theme="light"] .ipca-input-wrap input { background: #FFFFFF !important; border-color: #7C8EA2 !important; color: #0F172A !important; }
+[data-theme="light"] .sim-selic-card { background: linear-gradient(135deg, #FFF, #EFF6FF) !important; border-color: #DBEAFE !important; }
+[data-theme="light"] .sim-hero-card { background: linear-gradient(150deg,#FFF 0%,#EFF6FF 100%) !important; border-color: #DBEAFE !important; box-shadow: var(--shadow) !important; }
+[data-theme="light"] .sim-hero-value { color: #2563EB !important; text-shadow: none !important; }
+[data-theme="light"] .years-display strong { color: #2563EB !important; }
+[data-theme="light"] .scrub-time { color: #2563EB !important; }
+
+[data-theme="light"] .home-hero { background: radial-gradient(ellipse 140% 90% at 50% -25%, rgba(37,99,235,.07) 0%, transparent 62%) !important; }
+[data-theme="light"] .home-hero h1 { text-shadow: none !important; }
+[data-theme="light"] .home-hero h1 em { color: #2563EB !important; }
+[data-theme="light"] .home-pillar { background: #FFFFFF !important; border-color: #BFC9D4 !important; color: #374151 !important; }
+[data-theme="light"] .home-eyebrow { background: #EFF6FF !important; color: #1E40AF !important; border-color: rgba(37,99,235,.18) !important; }
+[data-theme="light"] .benefit-ico { background: #FFFFFF !important; border-color: #D2DCE7 !important; box-shadow: var(--shadow) !important; }
+
+[data-theme="light"] .tool-icon { background: inherit !important; border: none !important; box-shadow: none !important; }
+[data-theme="light"] .tc-calc .tool-icon { background: #DBEAFE !important; }
+[data-theme="light"] .tc-plan .tool-icon { background: #CCFBF1 !important; }
+[data-theme="light"] .tc-sim  .tool-icon { background: #FEF3C7 !important; }
+[data-theme="light"] .tc-calc .tool-cta { color: #2563EB !important; }
+[data-theme="light"] .tc-plan .tool-cta { color: #0F766E !important; }
+[data-theme="light"] .tc-sim  .tool-cta { color: #B45309 !important; }
+
+[data-theme="light"] .modal { background: #FFFFFF !important; backdrop-filter: none !important; box-shadow: var(--shadow-lg) !important; border-color: #D2DCE7 !important; }
+[data-theme="light"] .modal-overlay { background: rgba(15,23,42,.72) !important; backdrop-filter: blur(4px) !important; }
+[data-theme="light"] .qdp-step { background: #F7F9FB !important; border-color: #D2DCE7 !important; }
+[data-theme="light"] .qdp-letter.d { background: #DBEAFE !important; color: #1E40AF !important; }
+[data-theme="light"] .qdp-letter.p { background: #CCFBF1 !important; color: #0F766E !important; }
+[data-theme="light"] .modal-quote { background: #F5EFE8 !important; border-left-color: #7B6247 !important; }
+[data-theme="light"] .time-reminder { background: #EFF6FF !important; color: #1E40AF !important; }
+
+[data-theme="light"] .reflection-card { background: linear-gradient(135deg,#FFFFFF,#F5EFE8) !important; border-color: rgba(107,79,58,.18) !important; }
+[data-theme="light"] .scenario-card { background: #F7F9FB !important; border-color: #D2DCE7 !important; }
+[data-theme="light"] .discount-card { background: #F7F9FB !important; border-color: #D2DCE7 !important; }
+[data-theme="light"] .plan-metric { background: #F7F9FB !important; border-color: #D2DCE7 !important; }
+[data-theme="light"] .cross-cta { background: #EFF6FF !important; border-color: #DBEAFE !important; }
+[data-theme="light"] .progress-bar-track { background: #E4E7EE !important; }
+[data-theme="light"] .progress-bar-fill { background: linear-gradient(90deg,#1E40AF,#2563EB) !important; }
+[data-theme="light"] footer { background: #FFFFFF !important; border-top-color: #D2DCE7 !important; }
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: #BFC9D4 !important; }
+[data-theme="light"] .section-label { color: #374151 !important; opacity: .7; }

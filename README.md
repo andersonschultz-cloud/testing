@@ -1,4 +1,4 @@
-# 💰 Consumo da Vida — v5.1
+# 💰 Consumo da Vida — v5.0
 
 **Hub de Inteligência Financeira para educação financeira consciente.**
 
@@ -15,11 +15,10 @@
 ## Estrutura do projeto
 
 ```
-assets/css/        → Design System modular (5 arquivos, incluindo o tema premium)
+assets/css/        → Design System modular (4 arquivos)
 assets/js/         → Módulos JavaScript (9 arquivos)
 assets/data/       → banks.json (fonte de dados dos bancos)
-assets/img/logo/   → Logo, favicon e ícones da plataforma
-assets/img/background/ → Fundo tecnológico em SVG
+assets/img/logo/   → Logo da plataforma
 docs/              → Arquitetura e changelog
 ```
 

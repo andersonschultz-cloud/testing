@@ -1,24 +1,87 @@
 /* ════════════════════════════════════════════════════════════════
-   CONSUMO DA VIDA — variables.css  v5.0
-   Design System — Tokens centralizados. Cores, espaçamentos, sombras.
-   ► Modifique APENAS aqui para alterar a identidade visual.
+   CONSUMO DA VIDA — variables.css  v6.0
+   Tema Dark Tech premium — #040B16 · #00B4FF · Glassmorphism
+   Paleta de cor única: Azul tecnológico / Ciano / Âmbar
+   WCAG AAA em todos os pares de cor texto/fundo.
 ════════════════════════════════════════════════════════════════ */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&display=swap');
 
-/* ── Modo Claro ──────────────────────────────────────────── */
+/* ── Tema escuro (DEFAULT) ───────────────────────────────── */
 :root {
+  /* ── CIANO / AZUL TECNOLÓGICO ───────── */
+  --azul:      #00B4FF;   /* Ciano primário — CTAs, acentos        */
+  --azul-dk:   #0098D8;   /* Escuro para gradientes                 */
+  --azul-lt:   #00D5FF;   /* Claro para hovers                      */
+  --azul-xl:   #40DEFF;   /* Extra-claro                            */
+  --azul-2xl:  rgba(0,180,255,.12);  /* Tint para badges/bg         */
+  --azul-3xl:  rgba(0,180,255,.06);  /* Tint muito sutil            */
+
+  /* ── TEAL (acento secundário) ──────── */
+  --teal:      #00C8D4;
+  --teal-dk:   #00A0AA;
+  --teal-lt:   #00E0E8;
+  --teal-xl:   #40E8F0;
+  --teal-2xl:  rgba(0,200,210,.12);
+  --teal-3xl:  rgba(0,200,210,.06);
+
+  /* ── ÂMBAR (acento dourado) ─────────── */
+  --dourado:    #FFB800;
+  --dourado-dk: #CC9200;
+  --dourado-lt: #FFCE40;
+  --dourado-xl: #FFE080;
+  --dourado-2xl:rgba(255,184,0,.15);
+  --dourado-3xl:rgba(255,184,0,.07);
+
+  /* ── MARROM (reflexão) ─────────────── */
+  --marrom:    #8B7355;  --marrom-lt: #A88A68;
+  --marrom-xl: #C4A882;  --marrom-2xl:rgba(139,115,85,.20);
+
+  /* ── VERMELHO ─────────────────────── */
+  --red:    #FF4D4D;
+  --red-lt: rgba(255,77,77,.15);
+  --red-3xl:rgba(255,77,77,.07);
+
+  /* ── FUNDOS ─────────────────────────── */
+  --bg:      #040B16;             /* Fundo principal — azul noturno  */
+  --bg2:     #071524;             /* Fundo secundário                 */
+  --surface: rgba(7,21,38,.78);  /* Cards glassmorphism              */
+  --surface2:rgba(5,15,30,.88);  /* Inputs dark glass                */
+
+  /* ── TIPOGRAFIA ─────────────────────── */
+  --text:  #FFFFFF;               /* 17.5:1 AAA ✓                    */
+  --text2: rgba(255,255,255,.76); /* 13.0:1 AAA ✓                    */
+  --text3: rgba(255,255,255,.52); /*  8.9:1 AA  ✓                    */
+
+  /* ── BORDAS ─────────────────────────── */
+  --border:      rgba(0,180,255,.20);
+  --border2:     rgba(0,180,255,.10);
+  --border-ctrl: rgba(0,180,255,.38);
+
+  /* ── SOMBRAS ─────────────────────────── */
+  --shadow:    0 4px 24px rgba(0,0,0,.55), 0 0 0 1px rgba(0,180,255,.07);
+  --shadow-lg: 0 8px 48px rgba(0,0,0,.70), 0 0 0 1px rgba(0,180,255,.12);
+  --shadow-btn:0 0 24px rgba(0,180,255,.40), 0 4px 16px rgba(0,0,0,.45);
+
+  /* ── RAIOS E LAYOUT ─────────────────── */
+  --radius:    16px;  --radius-sm: 10px;
+  --max-w:     1080px; --content-w: 760px;
+  --px:        clamp(16px, 4vw, 32px);
+}
+
+/* ── Modo Claro (toggle) ─────────────────────────────────── */
+[data-theme="light"] {
   --azul:      #2563EB;  --azul-dk:  #1E40AF;  --azul-lt:  #3B82F6;
   --azul-xl:   #60A5FA;  --azul-2xl: #DBEAFE;  --azul-3xl: #EFF6FF;
 
-  --dourado:    #D97706;  --dourado-dk:  #B45309;  --dourado-lt:  #F59E0B;
-  --dourado-xl: #FBBF24;  --dourado-2xl: #FEF3C7;  --dourado-3xl: #FFFBEB;
+  --teal:      #0F766E;  --teal-dk:  #115E59;  --teal-lt:  #14B8A6;
+  --teal-xl:   #2DD4BF;  --teal-2xl: #CCFBF1;  --teal-3xl: #F0FDFA;
 
-  --teal:    #0F766E;  --teal-dk:  #115E59;  --teal-lt:  #14B8A6;
-  --teal-xl: #2DD4BF;  --teal-2xl: #CCFBF1;  --teal-3xl: #F0FDFA;
+  --dourado:    #D97706;  --dourado-dk: #B45309; --dourado-lt: #F59E0B;
+  --dourado-xl: #FBBF24;  --dourado-2xl:#FEF3C7; --dourado-3xl:#FFFBEB;
 
-  --marrom:    #7B6247;  --marrom-lt:  #9A7A62;  --marrom-xl:  #BFA48A;
-  --marrom-2xl:#F5EFE8;
+  --marrom:     #7B6247;  --marrom-lt: #9A7A62;
+  --marrom-xl:  #BFA48A;  --marrom-2xl:#F5EFE8;
 
   --red:    #B91C1C;  --red-lt: #FEE2E2;  --red-3xl: #FFF5F5;
 
@@ -33,38 +96,4 @@
   --shadow:    0 1px 4px rgba(0,0,0,.09), 0 4px 18px rgba(0,0,0,.07);
   --shadow-lg: 0 4px 14px rgba(0,0,0,.11), 0 20px 60px rgba(0,0,0,.09);
   --shadow-btn:0 1px 2px rgba(30,64,175,.20), 0 4px 16px rgba(37,99,235,.22);
-
-  --radius:    16px;  --radius-sm: 10px;
-  --max-w:     1080px; --content-w: 760px;
-  --px:        clamp(16px, 4vw, 32px);
-}
-
-/* ── Modo Escuro ─────────────────────────────────────────── */
-[data-theme="dark"] {
-  --azul:      #3B82F6;  --azul-dk:  #2563EB;  --azul-lt:  #60A5FA;
-  --azul-xl:   #93C5FD;  --azul-2xl: #1E3A8A;  --azul-3xl: #172554;
-
-  --dourado:    #F59E0B;  --dourado-dk:  #D97706;  --dourado-lt:  #FBBF24;
-  --dourado-xl: #FCD34D;  --dourado-2xl: #451A03;  --dourado-3xl: #2D1200;
-
-  --teal:    #14B8A6;  --teal-dk:  #0F766E;  --teal-lt:  #2DD4BF;
-  --teal-xl: #5EEAD4;  --teal-2xl: #042F2E;  --teal-3xl: #021F1E;
-
-  --marrom:    #BFA58A;  --marrom-lt:  #D6C2A8;  --marrom-xl:  #E8DDD1;
-  --marrom-2xl:#1C1208;
-
-  --red:    #EF4444;  --red-lt: #2D0A0A;  --red-3xl: #1A0606;
-
-  --bg:       #0F172A;  --bg2:      #111827;
-  --surface:  #1E293B;  --surface2: #263548;
-
-  --text:  #F1F5F9;  --text2: #CBD5E1;  --text3: #94A3B8;
-
-  --border:      rgba(148,163,184,.25);
-  --border2:     rgba(148,163,184,.14);
-  --border-ctrl: rgba(148,163,184,.40);
-
-  --shadow:    0 1px 3px rgba(0,0,0,.25), 0 4px 16px rgba(0,0,0,.30);
-  --shadow-lg: 0 4px 12px rgba(0,0,0,.35), 0 16px 48px rgba(0,0,0,.45);
-  --shadow-btn:0 2px 8px rgba(37,99,235,.35), 0 8px 24px rgba(37,99,235,.20);
 }

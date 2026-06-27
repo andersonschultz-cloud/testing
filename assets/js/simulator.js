@@ -408,7 +408,7 @@ function renderSimChart(computed) {
   const investedArr = Array.from({ length: months + 1 }, (_, m) => principal + monthly * m);
   const gridVals    = [0, 0.25, 0.5, 0.75, 1].map(f => f * maxFinal * 1.06);
   const axisColor   = dark ? '#475569' : '#94A3B8';
-  const gridColor   = dark ? 'rgba(255,255,255,.06)' : 'rgba(37,99,235,.07)';
+  const gridColor   = dark ? 'rgba(0,180,255,.10)' : 'rgba(0,180,255,.07)';
 
   let svg = `<svg viewBox="0 0 ${SIM_VBW} ${SIM_VBH}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Gráfico de rendimentos comparativos ao longo do tempo">`;
   gridVals.forEach(v => {
@@ -426,7 +426,7 @@ function renderSimChart(computed) {
     svg += `<path d="${pathOf(map[o.id].value)}" fill="none" stroke="${o.color}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>`;
   });
   const sx = xOf(s);
-  svg += `<line x1="${sx.toFixed(1)}" y1="${SIM_PADT}" x2="${sx.toFixed(1)}" y2="${SIM_PADT + SIM_PLOTH}" stroke="${dark ? '#60A5FA' : '#2563EB'}" stroke-width="1.5" stroke-dasharray="3 3"/>`;
+  svg += `<line x1="${sx.toFixed(1)}" y1="${SIM_PADT}" x2="${sx.toFixed(1)}" y2="${SIM_PADT + SIM_PLOTH}" stroke="${dark ? '#00B4FF' : '#00B4FF'}" stroke-width="1.5" stroke-dasharray="3 3"/>`;
   enabled.forEach(o => {
     const cy = yOf(map[o.id].value[s] || 0);
     svg += `<circle cx="${sx.toFixed(1)}" cy="${cy.toFixed(1)}" r="4.5" fill="${o.color}" stroke="${dark ? '#1E293B' : '#fff'}" stroke-width="2"/>`;
