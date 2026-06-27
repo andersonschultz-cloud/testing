@@ -5,13 +5,26 @@
 
 /* ── Tema ───────────────────────────────────────────────── */
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-let isDark = localStorage.getItem('cdv-theme') === 'dark'
-  || (localStorage.getItem('cdv-theme') === null && prefersDark);
+const savedTheme = localStorage.getItem('cdv-theme');
+// A identidade principal é escura; o modo claro continua disponível pelo botão.
+let isDark = savedTheme ? savedTheme === 'dark' : true;
+
+const THEME_ICONS = {
+  sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>',
+  moon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.3 8.3 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>',
+};
 
 function applyTheme() {
-  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+  const theme = isDark ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', theme);
   const btn = document.getElementById('themeBtn');
-  if (btn) btn.textContent = isDark ? '☀️' : '🌙';
+  if (btn) {
+    btn.innerHTML = isDark ? THEME_ICONS.sun : THEME_ICONS.moon;
+    btn.setAttribute('aria-label', isDark ? 'Alternar para o tema claro' : 'Alternar para o tema escuro');
+    btn.setAttribute('title', isDark ? 'Usar tema claro' : 'Usar tema escuro');
+  }
+  const themeMeta = document.querySelector('meta[name="theme-color"]');
+  if (themeMeta) themeMeta.setAttribute('content', isDark ? '#020914' : '#edf5fa');
 }
 
 function toggleTheme() {
