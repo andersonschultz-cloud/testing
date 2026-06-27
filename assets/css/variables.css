@@ -1,0 +1,91 @@
+/* ════════════════════════════════════════════════════════════════
+   CONSUMO DA VIDA — variables.css
+   Design System v4.0 — Tokens de design centralizados.
+   ► Adicione AQUI qualquer nova cor, fonte ou variável.
+   ► Nunca escreva valores de cor diretamente em outros arquivos CSS.
+════════════════════════════════════════════════════════════════ */
+
+/* ── Fontes ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap');
+
+/* ── Paleta — Modo Claro ─────────────────────────────────── */
+:root {
+  /* Azul (primário, CTA, navegação) */
+  --azul:      #2563EB;  --azul-dk:  #1E40AF;  --azul-lt:  #3B82F6;
+  --azul-xl:   #60A5FA;  --azul-2xl: #DBEAFE;  --azul-3xl: #EFF6FF;
+
+  /* Dourado (acento, cross-cta, aviso) */
+  --dourado:    #D97706;  --dourado-dk:  #B45309;  --dourado-lt:  #F59E0B;
+  --dourado-xl: #FBBF24;  --dourado-2xl: #FEF3C7;  --dourado-3xl: #FFFBEB;
+
+  /* Teal (crescimento, sucesso, poupança) */
+  --teal:    #0F766E;  --teal-dk:  #115E59;  --teal-lt:  #14B8A6;
+  --teal-xl: #2DD4BF;  --teal-2xl: #CCFBF1;  --teal-3xl: #F0FDFA;
+
+  /* Marrom (sabedoria, reflexão) */
+  --marrom:    #7B6247;  --marrom-lt:  #9A7A62;  --marrom-xl:  #BFA48A;
+  --marrom-2xl:#F5EFE8;
+
+  /* Vermelho (erro, alerta crítico) */
+  --red:    #B91C1C;  --red-lt: #FEE2E2;  --red-3xl: #FFF5F5;
+
+  /* Superfícies e hierarquia */
+  --bg:       #F0F1F5;   /* fundo da página        */
+  --bg2:      #E4E7EE;   /* fundo secundário        */
+  --surface:  #FFFFFF;   /* fundo de cards          */
+  --surface2: #F7F9FB;   /* inputs, superfície suave */
+
+  /* Tipografia */
+  --text:  #0F172A;   /* primário   — 15.82:1 ✓ AAA */
+  --text2: #374151;   /* secundário —  9.13:1 ✓ AAA */
+  --text3: #525A6A;   /* auxiliar   —  6.14:1 ✓ AA  */
+
+  /* Bordas */
+  --border:      #BFC9D4;  /* bordas decorativas      */
+  --border2:     #D2DCE7;  /* bordas suaves de cards  */
+  --border-ctrl: #7C8EA2;  /* bordas de inputs (WCAG SC 1.4.11: 3.18:1 ✓) */
+
+  /* Sombras (neutras, sem matiz azul) */
+  --shadow:    0 1px 4px rgba(0,0,0,.09), 0 4px 18px rgba(0,0,0,.07);
+  --shadow-lg: 0 4px 14px rgba(0,0,0,.11), 0 20px 60px rgba(0,0,0,.09);
+  --shadow-btn:0 1px 2px rgba(30,64,175,.20), 0 4px 16px rgba(37,99,235,.22);
+
+  /* Raios e espaçamentos */
+  --radius:    16px;
+  --radius-sm: 10px;
+
+  /* Larguras */
+  --max-w:     1080px;
+  --content-w: 760px;
+  --px:        clamp(16px, 4vw, 32px);
+}
+
+/* ── Paleta — Modo Escuro ─────────────────────────────────── */
+[data-theme="dark"] {
+  --azul:      #3B82F6;  --azul-dk:  #2563EB;  --azul-lt:  #60A5FA;
+  --azul-xl:   #93C5FD;  --azul-2xl: #1E3A8A;  --azul-3xl: #172554;
+
+  --dourado:    #F59E0B;  --dourado-dk:  #D97706;  --dourado-lt:  #FBBF24;
+  --dourado-xl: #FCD34D;  --dourado-2xl: #451A03;  --dourado-3xl: #2D1200;
+
+  --teal:    #14B8A6;  --teal-dk:  #0F766E;  --teal-lt:  #2DD4BF;
+  --teal-xl: #5EEAD4;  --teal-2xl: #042F2E;  --teal-3xl: #021F1E;
+
+  --marrom:    #BFA58A;  --marrom-lt:  #D6C2A8;  --marrom-xl:  #E8DDD1;
+  --marrom-2xl:#1C1208;
+
+  --red:    #EF4444;  --red-lt: #2D0A0A;  --red-3xl: #1A0606;
+
+  --bg:       #0F172A;  --bg2:      #111827;
+  --surface:  #1E293B;  --surface2: #263548;
+
+  --text:  #F1F5F9;  --text2: #CBD5E1;  --text3: #94A3B8;
+
+  --border:      rgba(148,163,184,.25);
+  --border2:     rgba(148,163,184,.14);
+  --border-ctrl: rgba(148,163,184,.40);
+
+  --shadow:    0 1px 3px rgba(0,0,0,.25), 0 4px 16px rgba(0,0,0,.30);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,.35), 0 16px 48px rgba(0,0,0,.45);
+  --shadow-btn:0 2px 8px rgba(37,99,235,.35), 0 8px 24px rgba(37,99,235,.20);
+}

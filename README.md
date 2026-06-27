@@ -1,26 +1,35 @@
-# 💰 Consumo da Vida · v4.0
+# 💰 Consumo da Vida — v5.0
 
-**Hub de Inteligência Financeira** | [consumodavida.com.br](https://consumodavida.com.br)
+**Hub de Inteligência Financeira para educação financeira consciente.**
 
-## Simulador de Rendimentos — 8 Instituições
+🌐 **[consumodavida.com.br](https://consumodavida.com.br)**
 
-| Instituição | Produto de Referência | Rentabilidade | Fonte |
-|---|---|---|---|
-| PicPay | Reserva PicPay — CDB liq. diária | 150% do CDI | picpay.com |
-| Sicredi | CDB liq. diária (mín. R$1.000) | 108% do CDI | quanto-rende.com jun/2026 |
-| Tesouro Selic 2027 | Título público federal | Selic + 0,3433% | Tesouro Direto |
-| Tesouro Selic 2024 | Título público federal | Selic + 0,1806% | Tesouro Direto |
-| Nubank | Conta Remunerada / CDB liq. diária | 100% do CDI | nubank.com.br |
-| Santander | CDB DI — liq. diária | 100% do CDI | múltiplas fontes 2026 |
-| Itaú | CDB DI — liq. diária | 100% do CDI | itau.com.br + múltiplas fontes |
-| Poupança | Conta poupança — qualquer banco | 0,5%/mês + TR | Lei 12.703/2012 |
+## Ferramentas
 
-> Taxas variam conforme perfil, prazo e valor investido. Consulte a instituição.
+| | Ferramenta | O que faz |
+|---|---|---|
+| 🕐 | **Calculadora de Vida** | Converte preço em horas/dias de trabalho. Método QDP. |
+| 📊 | **Planejador de Compras** | Avalia peso da compra, plano de economia, desconto à vista. |
+| 📈 | **Simulador de Rendimentos** | Juros compostos com Selic ao vivo + 8 instituições + comparison cards. |
+
+## Estrutura do projeto
+
+```
+assets/css/        → Design System modular (4 arquivos)
+assets/js/         → Módulos JavaScript (9 arquivos)
+assets/data/       → banks.json (fonte de dados dos bancos)
+assets/img/logo/   → Logo da plataforma
+docs/              → Arquitetura e changelog
+```
+
+## Adicionar um banco
+
+Edite apenas `assets/data/banks.json` — nenhum código precisa ser alterado.
 
 ## Deploy
 
 ```bash
-git add -A && git commit -m "feat: simulador v4 + Sicredi, Santander, Itaú + logos" && git push origin main
+git add -A && git commit -m "descrição" && git push origin main
 ```
 
 ---

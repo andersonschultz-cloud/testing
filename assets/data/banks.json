@@ -1,0 +1,110 @@
+{
+  "version": "1.1.0",
+  "updated": "2026-06",
+  "note": "Taxas pesquisadas em jun/2026. Verifique periodicamente com cada instituição antes de investir.",
+  "sources": {
+    "sicredi": "quanto-rende.com jun/2026 — CDB liquidez diária",
+    "santander": "múltiplas fontes 2026 — CDB DI padrão",
+    "itau": "itau.com.br + múltiplas fontes 2026 — CDB DI",
+    "nubank": "nubank.com.br — Conta Remunerada",
+    "picpay": "picpay.com — Reserva PicPay"
+  },
+  "banks": [
+    {
+      "id": "picpay",
+      "name": "PicPay",
+      "category": "fintech",
+      "product": "Reserva PicPay — CDB liquidez diária",
+      "derive": { "base": "cdi", "factor": 1.5 },
+      "color": "#21C25E",
+      "logo": "https://logo.clearbit.com/picpay.com",
+      "taxable": true,
+      "enabled": true,
+      "minInvestment": 1
+    },
+    {
+      "id": "sicredi",
+      "name": "Sicredi",
+      "category": "cooperativa",
+      "product": "CDB Sicredi — liquidez diária (mín. R$1.000)",
+      "derive": { "base": "cdi", "factor": 1.08 },
+      "color": "#00843D",
+      "logo": "https://logo.clearbit.com/sicredi.com.br",
+      "taxable": true,
+      "enabled": true,
+      "minInvestment": 1000
+    },
+    {
+      "id": "nubank",
+      "name": "Nubank",
+      "category": "fintech",
+      "product": "Conta Remunerada Nubank — CDB liquidez diária",
+      "derive": { "base": "cdi", "factor": 1.0 },
+      "color": "#820AD1",
+      "logo": "https://logo.clearbit.com/nubank.com.br",
+      "taxable": true,
+      "enabled": true,
+      "minInvestment": 1
+    },
+    {
+      "id": "santander",
+      "name": "Santander",
+      "category": "banco_tradicional",
+      "product": "CDB DI Santander — liquidez diária",
+      "derive": { "base": "cdi", "factor": 1.0 },
+      "color": "#CC0000",
+      "logo": "https://logo.clearbit.com/santander.com.br",
+      "taxable": true,
+      "enabled": true,
+      "minInvestment": 1
+    },
+    {
+      "id": "itau",
+      "name": "Itaú",
+      "category": "banco_tradicional",
+      "product": "CDB DI Itaú — liquidez diária",
+      "derive": { "base": "cdi", "factor": 1.0 },
+      "color": "#F47A20",
+      "logo": "https://logo.clearbit.com/itau.com.br",
+      "taxable": true,
+      "enabled": true,
+      "minInvestment": 1
+    },
+    {
+      "id": "selic24",
+      "name": "Tesouro Selic 2024",
+      "category": "tesouro_direto",
+      "product": "Tesouro Selic 2024 — título público federal",
+      "derive": { "base": "selicAdd", "add": 0.1806 },
+      "color": "#2563EB",
+      "logo": "https://logo.clearbit.com/tesourodireto.com.br",
+      "taxable": true,
+      "enabled": true,
+      "minInvestment": 30
+    },
+    {
+      "id": "selic27",
+      "name": "Tesouro Selic 2027",
+      "category": "tesouro_direto",
+      "product": "Tesouro Selic 2027 — título público federal",
+      "derive": { "base": "selicAdd", "add": 0.3433 },
+      "color": "#4F46E5",
+      "logo": "https://logo.clearbit.com/tesourodireto.com.br",
+      "taxable": true,
+      "enabled": true,
+      "minInvestment": 30
+    },
+    {
+      "id": "poupanca",
+      "name": "Poupança",
+      "category": "poupanca",
+      "product": "Conta poupança — qualquer banco (remuneração uniforme)",
+      "derive": { "base": "poupanca" },
+      "color": "#D97706",
+      "logo": null,
+      "taxable": false,
+      "enabled": true,
+      "minInvestment": 0.01
+    }
+  ]
+}
