@@ -1,91 +1,129 @@
 /* ════════════════════════════════════════════════════════════════
    CONSUMO DA VIDA — variables.css
-   Design System v4.0 — Tokens de design centralizados.
-   ► Adicione AQUI qualquer nova cor, fonte ou variável.
-   ► Nunca escreva valores de cor diretamente em outros arquivos CSS.
+   Tema: Inspirado na identidade visual Sicredi
+   Verde Sicredi Digital: #3FA110 · Branco como co-primária
+   Referência: marca.sicredi.com.br (cores digitais jun/2026)
 ════════════════════════════════════════════════════════════════ */
 
-/* ── Fontes ─────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap');
 
-/* ── Paleta — Modo Claro ─────────────────────────────────── */
+/* ── Modo Claro — Paleta Sicredi ─────────────────────────── */
 :root {
-  /* Azul (primário, CTA, navegação) */
-  --azul:      #2563EB;  --azul-dk:  #1E40AF;  --azul-lt:  #3B82F6;
-  --azul-xl:   #60A5FA;  --azul-2xl: #DBEAFE;  --azul-3xl: #EFF6FF;
+  /* ── VERDE SICREDI (primário) ─────────────────────────── */
+  /* #3FA110 = Verde Sicredi Digital oficial (decorativo / ícones / brand) */
+  /* #1F6B0A = usado em botões com texto branco (6.63:1 ✓ AAA)           */
+  --azul:      #1F6B0A;   /* Sicredi verde escuro — botões, ativo           */
+  --azul-dk:   #165206;   /* Mais escuro — gradiente inicio                  */
+  --azul-lt:   #3FA110;   /* Verde Sicredi Digital — acento, ícones          */
+  --azul-xl:   #66C235;   /* Verde médio claro                               */
+  --azul-2xl:  #D7E6C8;   /* Verde muito claro — fundos de badges (Sicredi)  */
+  --azul-3xl:  #EDF6E5;   /* Verde quase branco — hover sutil                */
 
-  /* Dourado (acento, cross-cta, aviso) */
-  --dourado:    #D97706;  --dourado-dk:  #B45309;  --dourado-lt:  #F59E0B;
-  --dourado-xl: #FBBF24;  --dourado-2xl: #FEF3C7;  --dourado-3xl: #FFFBEB;
+  /* ── VERDE SECUNDÁRIO (substitui --teal) ─────────────────── */
+  --teal:      #1A5E30;   /* Verde médio-escuro — sucesso, crescimento       */
+  --teal-dk:   #124524;   /* Mais escuro                                     */
+  --teal-lt:   #2E8A4A;   /* Verde claro                                     */
+  --teal-xl:   #52B86E;   /* Verde extra-claro                               */
+  --teal-2xl:  #C0E6CA;   /* Verde bem claro — badges, tint                  */
+  --teal-3xl:  #EAF5EE;   /* Quase branco verde                              */
 
-  /* Teal (crescimento, sucesso, poupança) */
-  --teal:    #0F766E;  --teal-dk:  #115E59;  --teal-lt:  #14B8A6;
-  --teal-xl: #2DD4BF;  --teal-2xl: #CCFBF1;  --teal-3xl: #F0FDFA;
+  /* ── DOURADO / ÂMBAR (acento Sicredi — #FFEB8C na paleta) ─ */
+  --dourado:    #C87800;  /* Âmbar escuro para uso em texto (evitar 3.42:1) */
+  --dourado-dk: #9A5C00;  /* Mais escuro — gradiente CTA                    */
+  --dourado-lt: #F5A623;  /* Âmbar brilhante — decorativo                   */
+  --dourado-xl: #FFBE52;  /* Extra-claro                                     */
+  --dourado-2xl:#FFF3CC;  /* Tint âmbar (Sicredi: #FFEB8C)                  */
+  --dourado-3xl:#FFFAEC;  /* Quase branco âmbar                             */
 
-  /* Marrom (sabedoria, reflexão) */
-  --marrom:    #7B6247;  --marrom-lt:  #9A7A62;  --marrom-xl:  #BFA48A;
-  --marrom-2xl:#F5EFE8;
+  /* ── MARROM (sabedoria, reflexão — ton neutro quente) ──── */
+  --marrom:    #6B5A3E;
+  --marrom-lt: #8B7355;
+  --marrom-xl: #BFA88A;
+  --marrom-2xl:#F5EEE3;
 
-  /* Vermelho (erro, alerta crítico) */
-  --red:    #B91C1C;  --red-lt: #FEE2E2;  --red-3xl: #FFF5F5;
+  /* ── VERMELHO (erros, alertas) ────────────────────────── */
+  --red:    #B91C1C;
+  --red-lt: #FEE2E2;
+  --red-3xl:#FFF5F5;
 
-  /* Superfícies e hierarquia */
-  --bg:       #F0F1F5;   /* fundo da página        */
-  --bg2:      #E4E7EE;   /* fundo secundário        */
-  --surface:  #FFFFFF;   /* fundo de cards          */
-  --surface2: #F7F9FB;   /* inputs, superfície suave */
+  /* ── SUPERFÍCIES (fundo verde-frio muito sutil) ─────────── */
+  --bg:      #F4F8F1;   /* Verde levíssimo — cria respiro Sicredi           */
+  --bg2:     #E6EFE0;   /* Segundo plano mais denso                         */
+  --surface: #FFFFFF;   /* Cards — branco puro (co-primária Sicredi)        */
+  --surface2:#F8FBF6;   /* Input, surfaces suaves                           */
 
-  /* Tipografia */
-  --text:  #0F172A;   /* primário   — 15.82:1 ✓ AAA */
-  --text2: #374151;   /* secundário —  9.13:1 ✓ AAA */
-  --text3: #525A6A;   /* auxiliar   —  6.14:1 ✓ AA  */
+  /* ── TIPOGRAFIA (verde-escuro em vez de azul) ────────────── */
+  --text:  #1A2C0D;   /* Preto-verde escuro  — 15.0:1 ✓ AAA               */
+  --text2: #2E4820;   /* Verde-cinza escuro  — 10.2:1 ✓ AAA               */
+  --text3: #4A6838;   /* Verde-cinza médio   —  5.87:1 ✓ AA               */
 
-  /* Bordas */
-  --border:      #BFC9D4;  /* bordas decorativas      */
-  --border2:     #D2DCE7;  /* bordas suaves de cards  */
-  --border-ctrl: #7C8EA2;  /* bordas de inputs (WCAG SC 1.4.11: 3.18:1 ✓) */
+  /* ── BORDAS ────────────────────────────────────────────── */
+  --border:      #BDD0AA;   /* Borda decorativa verde clara                 */
+  --border2:     #D4E4C3;   /* Borda suave para cards                       */
+  --border-ctrl: #5A7A48;   /* Borda de input (4.82:1 ✓ AA WCAG 1.4.11)    */
 
-  /* Sombras (neutras, sem matiz azul) */
-  --shadow:    0 1px 4px rgba(0,0,0,.09), 0 4px 18px rgba(0,0,0,.07);
-  --shadow-lg: 0 4px 14px rgba(0,0,0,.11), 0 20px 60px rgba(0,0,0,.09);
-  --shadow-btn:0 1px 2px rgba(30,64,175,.20), 0 4px 16px rgba(37,99,235,.22);
+  /* ── SOMBRAS (verde-tintadas para identidade) ──────────── */
+  --shadow:    0 1px 4px rgba(20,80,8,.08), 0 4px 18px rgba(20,80,8,.06);
+  --shadow-lg: 0 4px 14px rgba(20,80,8,.10), 0 20px 60px rgba(20,80,8,.08);
+  --shadow-btn:0 1px 2px rgba(10,80,5,.28), 0 4px 16px rgba(31,107,10,.25);
 
-  /* Raios e espaçamentos */
+  /* ── RAIOS E LAYOUT ─────────────────────────────────────── */
   --radius:    16px;
   --radius-sm: 10px;
-
-  /* Larguras */
   --max-w:     1080px;
   --content-w: 760px;
   --px:        clamp(16px, 4vw, 32px);
 }
 
-/* ── Paleta — Modo Escuro ─────────────────────────────────── */
+/* ── Modo Escuro — "Dark Sicredi" ────────────────────────── */
 [data-theme="dark"] {
-  --azul:      #3B82F6;  --azul-dk:  #2563EB;  --azul-lt:  #60A5FA;
-  --azul-xl:   #93C5FD;  --azul-2xl: #1E3A8A;  --azul-3xl: #172554;
+  /* Verde mais luminoso para contraste em dark */
+  --azul:      #5AC420;   /* Verde brilhante em escuro                      */
+  --azul-dk:   #3FA110;   /* Verde Sicredi Digital                          */
+  --azul-lt:   #7BCF3A;   /* Mais claro                                     */
+  --azul-xl:   #9FDF65;   /* Extra-claro                                    */
+  --azul-2xl:  #1C3A12;   /* Dark badge bg                                  */
+  --azul-3xl:  #142B0C;   /* Near-black green                               */
 
-  --dourado:    #F59E0B;  --dourado-dk:  #D97706;  --dourado-lt:  #FBBF24;
-  --dourado-xl: #FCD34D;  --dourado-2xl: #451A03;  --dourado-3xl: #2D1200;
+  --teal:      #2E9D50;
+  --teal-dk:   #1A7038;
+  --teal-lt:   #52C070;
+  --teal-xl:   #7BD490;
+  --teal-2xl:  #0F2D18;
+  --teal-3xl:  #0A2012;
 
-  --teal:    #14B8A6;  --teal-dk:  #0F766E;  --teal-lt:  #2DD4BF;
-  --teal-xl: #5EEAD4;  --teal-2xl: #042F2E;  --teal-3xl: #021F1E;
+  --dourado:    #F5A623;
+  --dourado-dk: #D97706;
+  --dourado-lt: #FFBE52;
+  --dourado-xl: #FFD070;
+  --dourado-2xl:#3A2600;
+  --dourado-3xl:#2A1A00;
 
-  --marrom:    #BFA58A;  --marrom-lt:  #D6C2A8;  --marrom-xl:  #E8DDD1;
+  --marrom:    #BFA58A;
+  --marrom-lt: #D6C2A8;
+  --marrom-xl: #E8DDD1;
   --marrom-2xl:#1C1208;
 
-  --red:    #EF4444;  --red-lt: #2D0A0A;  --red-3xl: #1A0606;
+  --red:    #EF4444;
+  --red-lt: #2D0A0A;
+  --red-3xl:#1A0606;
 
-  --bg:       #0F172A;  --bg2:      #111827;
-  --surface:  #1E293B;  --surface2: #263548;
+  /* Dark surfaces — floresta escura profissional */
+  --bg:      #0E1C0A;
+  --bg2:     #132210;
+  --surface: #1A3015;
+  --surface2:#223C1A;
 
-  --text:  #F1F5F9;  --text2: #CBD5E1;  --text3: #94A3B8;
+  /* Texto claro em fundo escuro */
+  --text:  #EBF5E6;   /* 15.5:1 ✓ AAA                                    */
+  --text2: #B8D4AA;   /* 7.8:1 ✓ AA                                      */
+  --text3: #7AA068;   /* 4.6:1 ✓ AA                                      */
 
-  --border:      rgba(148,163,184,.25);
-  --border2:     rgba(148,163,184,.14);
-  --border-ctrl: rgba(148,163,184,.40);
+  --border:      rgba(90,196,32,.22);
+  --border2:     rgba(90,196,32,.13);
+  --border-ctrl: rgba(160,220,100,.40);
 
-  --shadow:    0 1px 3px rgba(0,0,0,.25), 0 4px 16px rgba(0,0,0,.30);
-  --shadow-lg: 0 4px 12px rgba(0,0,0,.35), 0 16px 48px rgba(0,0,0,.45);
-  --shadow-btn:0 2px 8px rgba(37,99,235,.35), 0 8px 24px rgba(37,99,235,.20);
+  --shadow:    0 1px 3px rgba(0,0,0,.35), 0 4px 16px rgba(0,0,0,.45);
+  --shadow-lg: 0 4px 12px rgba(0,0,0,.50), 0 16px 48px rgba(0,0,0,.60);
+  --shadow-btn:0 2px 8px rgba(63,161,16,.40), 0 8px 24px rgba(20,80,5,.30);
 }

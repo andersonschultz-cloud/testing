@@ -1,0 +1,438 @@
+/* ════════════════════════════════════════════════════════════════
+   sicredi.css — Enhancements de tema Sicredi
+   Aplicado APÓS components.css. Sobrescreve seletivamente
+   elementos que precisam de ajuste além da paleta de variáveis.
+   Mantém 100% das funcionalidades — apenas visual.
+════════════════════════════════════════════════════════════════ */
+
+/* ── CORREÇÕES DE VALORES HARDCODED ───────────────────────── */
+
+/* Nav glass: de azul-tintado para verde-tintado */
+.topnav {
+  background: rgba(244,248,241,.90) !important;
+  border-bottom: 1px solid var(--border2) !important;
+  border-top: 3px solid var(--azul-lt);     /* faixa verde Sicredi no topo */
+}
+[data-theme="dark"] .topnav {
+  background: rgba(14,28,10,.90) !important;
+  border-top-color: var(--azul);
+}
+
+/* Slider thumb: sombra verde */
+.year-slider::-webkit-slider-thumb {
+  box-shadow: 0 2px 10px rgba(31,107,10,.45) !important;
+}
+.year-slider::-moz-range-thumb {
+  box-shadow: 0 2px 10px rgba(31,107,10,.45) !important;
+}
+
+/* Modal overlay: véu verde-escuro */
+.modal-overlay {
+  background: rgba(8,20,5,.72) !important;
+}
+
+/* Focus rings: verde */
+:focus-visible {
+  outline-color: var(--azul) !important;
+}
+.btn-calc:focus-visible,.btn-yes:focus-visible,.nav-link:focus-visible,
+.tool-card:focus-visible,.nav-brand:focus-visible,.btn-refresh:focus-visible,
+.btn-add-bank:focus-visible,.theme-btn:focus-visible,.nav-toggle:focus-visible {
+  box-shadow: 0 0 0 3px rgba(31,107,10,.38) !important;
+}
+
+/* ── IDENTIDADE SICREDI — NAVEGAÇÃO ───────────────────────── */
+.nav-title { color: var(--azul) !important; }
+.nav-title span { color: var(--azul-lt) !important; font-style: italic; }
+
+/* Nav link ativo: verde sólido */
+.nav-link.active {
+  background: var(--azul) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(31,107,10,.30) !important;
+}
+.nav-link:hover {
+  background: var(--azul-2xl) !important;
+  color: var(--azul) !important;
+}
+[data-theme="dark"] .nav-link:hover {
+  background: var(--azul-2xl) !important;
+  color: var(--azul-lt) !important;
+}
+
+/* ── BOTÃO PRINCIPAL — VERDE SICREDI ──────────────────────── */
+.btn-calc {
+  background: linear-gradient(135deg, var(--azul-dk), var(--azul)) !important;
+  box-shadow: var(--shadow-btn) !important;
+  letter-spacing: .3px;
+}
+.btn-calc:hover {
+  background: linear-gradient(135deg, #0F4004, var(--azul-dk)) !important;
+  transform: translateY(-1px);
+}
+.btn-calc.btn-teal {
+  background: linear-gradient(135deg, var(--teal-dk), var(--teal)) !important;
+  box-shadow: 0 4px 16px rgba(26,94,48,.28) !important;
+}
+.btn-calc.btn-teal:hover {
+  background: linear-gradient(135deg, #0A3018, var(--teal-dk)) !important;
+}
+
+/* ── HOME HERO — gradiente verde ──────────────────────────── */
+.home-hero {
+  background: radial-gradient(ellipse 140% 90% at 50% -20%,
+    rgba(63,161,16,.10) 0%, transparent 65%) !important;
+}
+
+/* Eyebrow badge: verde Sicredi */
+.home-eyebrow {
+  background: var(--azul-2xl) !important;
+  color: var(--azul) !important;
+  border-color: rgba(31,107,10,.22) !important;
+}
+[data-theme="dark"] .home-eyebrow {
+  background: var(--azul-2xl) !important;
+  color: var(--azul-xl) !important;
+}
+
+/* ── TOOL CARDS — acento verde ────────────────────────────── */
+.tool-card.tc-calc::before {
+  background: linear-gradient(90deg, var(--azul-dk), var(--azul-lt)) !important;
+}
+.tool-card.tc-plan::before {
+  background: linear-gradient(90deg, var(--teal-dk), var(--teal-lt)) !important;
+}
+/* tc-sim mantém âmbar (diferenciação visual) */
+
+.tc-calc .tool-icon { background: var(--azul-2xl) !important; }
+.tc-plan .tool-icon { background: var(--teal-2xl) !important; }
+
+.tc-calc .tool-cta { color: var(--azul) !important; }
+.tc-plan .tool-cta { color: var(--teal) !important; }
+
+/* ── TOOL HEADER BADGES ──────────────────────────────────── */
+.th-badge.b-calc {
+  background: var(--azul-3xl) !important;
+  color: var(--azul) !important;
+  border-color: rgba(31,107,10,.22) !important;
+}
+.th-badge.b-plan {
+  background: var(--teal-3xl) !important;
+  color: var(--teal) !important;
+  border-color: rgba(26,94,48,.22) !important;
+}
+[data-theme="dark"] .th-badge.b-plan  { color: var(--teal-lt)  !important; }
+
+/* ── IMPACT BADGES — paleta verde ───────────────────────── */
+.impact-badge.low  { background: var(--teal-2xl) !important; color: var(--teal) !important; }
+.impact-badge.mod  { background: var(--azul-2xl) !important; color: var(--azul) !important; }
+[data-theme="dark"] .impact-badge.low { color: var(--teal-lt) !important; }
+[data-theme="dark"] .impact-badge.mod { color: var(--azul-lt) !important; }
+
+/* ── MSG STRIP — verde ──────────────────────────────────── */
+.msg-strip {
+  background: var(--azul-3xl) !important;
+  border-left-color: var(--azul) !important;
+}
+[data-theme="dark"] .msg-strip {
+  background: var(--azul-2xl) !important;
+}
+
+/* ── METRICS — valor azul → verde ──────────────────────── */
+.m-val.azul { color: var(--azul) !important; }
+.m-val.teal { color: var(--teal) !important; }
+[data-theme="dark"] .m-val.teal { color: var(--teal-lt) !important; }
+
+/* ── PESO BADGES DO PLANEJADOR ──────────────────────────── */
+.peso-badge.muito-leve { background: var(--teal-2xl) !important; color: var(--teal) !important; }
+.peso-badge.leve       { background: var(--azul-2xl) !important; color: var(--azul) !important; }
+[data-theme="dark"] .peso-badge.muito-leve { color: var(--teal-lt) !important; }
+[data-theme="dark"] .peso-badge.leve       { color: var(--azul-lt) !important; }
+
+/* ── PESO DESC ──────────────────────────────────────────── */
+.peso-desc { border-left-color: var(--teal) !important; }
+
+/* ── PROGRESS BAR — verde ──────────────────────────────── */
+.progress-bar-fill {
+  background: linear-gradient(90deg, var(--azul-dk), var(--azul)) !important;
+}
+
+/* ── SCENARIO CARD hover ──────────────────────────────── */
+.scenario-card:hover { border-color: var(--azul) !important; }
+.sc-amount { color: var(--teal) !important; }
+[data-theme="dark"] .sc-amount { color: var(--teal-lt) !important; }
+
+/* ── DISCOUNT ──────────────────────────────────────────── */
+.d-saving { color: var(--teal) !important; }
+.discount-card:hover { border-color: var(--teal) !important; }
+.discount-tip {
+  background: var(--teal-3xl) !important;
+  border-left-color: var(--teal) !important;
+}
+[data-theme="dark"] .discount-tip { background: rgba(26,94,48,.18) !important; }
+
+/* ── CROSS-CTA ──────────────────────────────────────────── */
+.cross-cta {
+  background: var(--azul-3xl) !important;
+  border-color: var(--azul-2xl) !important;
+}
+[data-theme="dark"] .cross-cta {
+  background: rgba(22,82,6,.35) !important;
+  border-color: rgba(90,196,32,.22) !important;
+}
+
+/* Botão cross-cta mantém âmbar (diferenciação visual intencional) */
+
+/* ── MODAL QDP ──────────────────────────────────────────── */
+.qdp-letter.d {
+  background: var(--azul-2xl) !important;
+  color: var(--azul) !important;
+}
+.qdp-letter.p {
+  background: var(--teal-2xl) !important;
+  color: var(--teal) !important;
+}
+[data-theme="dark"] .qdp-letter.d { color: var(--azul-lt) !important; }
+[data-theme="dark"] .qdp-letter.p { color: var(--teal-lt) !important; }
+.time-reminder {
+  background: var(--azul-3xl) !important;
+  color: var(--azul) !important;
+}
+[data-theme="dark"] .time-reminder {
+  background: var(--azul-2xl) !important;
+  color: var(--azul-xl) !important;
+}
+.btn-yes {
+  background: linear-gradient(135deg, var(--azul-dk), var(--azul)) !important;
+  box-shadow: 0 2px 8px rgba(31,107,10,.30) !important;
+}
+.btn-yes:hover {
+  background: linear-gradient(135deg, #0F4004, var(--azul-dk)) !important;
+}
+
+/* ── SIMULADOR — hero card ──────────────────────────────── */
+.sim-hero-card {
+  background: linear-gradient(150deg, #fff 0%, var(--azul-3xl) 100%) !important;
+  border-color: var(--azul-2xl) !important;
+}
+[data-theme="dark"] .sim-hero-card {
+  background: linear-gradient(150deg, var(--surface) 0%, var(--azul-2xl) 100%) !important;
+  border-color: rgba(90,196,32,.20) !important;
+}
+
+.sim-hero-leader {
+  background: var(--teal-2xl) !important;
+  color: var(--teal) !important;
+}
+[data-theme="dark"] .sim-hero-leader { color: var(--teal-lt) !important; }
+.sim-hero-value { color: var(--azul) !important; }
+.sim-hero-sub b { color: var(--teal) !important; }
+[data-theme="dark"] .sim-hero-sub b { color: var(--teal-lt) !important; }
+
+.scrub-time { color: var(--azul) !important; }
+
+/* ── SELIC STATUS ────────────────────────────────────────── */
+.selic-status.ok { color: var(--teal) !important; }
+[data-theme="dark"] .selic-status.ok { color: var(--teal-lt) !important; }
+.selic-status.warn { color: var(--dourado-dk) !important; }
+
+.sim-selic-card {
+  background: linear-gradient(135deg, #fff, var(--azul-3xl)) !important;
+  border-color: var(--azul-2xl) !important;
+}
+[data-theme="dark"] .sim-selic-card {
+  background: linear-gradient(135deg, var(--surface), var(--azul-2xl)) !important;
+  border-color: rgba(90,196,32,.22) !important;
+}
+
+.cdi-box strong { color: var(--teal) !important; }
+[data-theme="dark"] .cdi-box strong { color: var(--teal-lt) !important; }
+
+/* ── RANKING / COMPARISON CARDS ─────────────────────────── */
+.rank-row.leader { border-color: var(--teal) !important; background: var(--teal-3xl) !important; }
+[data-theme="dark"] .rank-row.leader { background: var(--teal-2xl) !important; }
+.rank-row.leader .rank-pos { color: var(--teal) !important; }
+.rank-tag { background: var(--teal-2xl) !important; color: var(--teal) !important; }
+.rank-pct { color: var(--teal) !important; }
+[data-theme="dark"] .rank-pct { color: var(--teal-lt) !important; }
+
+.cmp-card.leader {
+  border-color: var(--teal) !important;
+  box-shadow: 0 0 0 1px var(--teal), var(--shadow) !important;
+}
+.cmp-card.leader::before {
+  background: linear-gradient(90deg, var(--teal), var(--teal-lt)) !important;
+}
+.cmp-pct-badge {
+  background: var(--azul-2xl) !important;
+  color: var(--azul) !important;
+}
+[data-theme="dark"] .cmp-pct-badge { color: var(--azul-lt) !important; }
+.cmp-card.leader .cmp-pct-badge {
+  background: var(--teal-2xl) !important;
+  color: var(--teal) !important;
+}
+[data-theme="dark"] .cmp-card.leader .cmp-pct-badge { color: var(--teal-lt) !important; }
+.cmp-val.accent { color: var(--teal) !important; }
+[data-theme="dark"] .cmp-val.accent { color: var(--teal-lt) !important; }
+.cmp-leader-badge {
+  background: var(--teal-2xl) !important;
+  color: var(--teal) !important;
+}
+[data-theme="dark"] .cmp-leader-badge { color: var(--teal-lt) !important; }
+
+/* ── CUSTOM BANK FORM ────────────────────────────────────── */
+.opt-custom-tag {
+  background: var(--azul-2xl) !important;
+  color: var(--azul) !important;
+}
+[data-theme="dark"] .opt-custom-tag {
+  background: var(--azul-2xl) !important;
+  color: var(--azul-xl) !important;
+}
+.opt-action-btn:hover { background: var(--azul-3xl) !important; color: var(--azul) !important; }
+.btn-add-bank:hover {
+  border-color: var(--azul) !important;
+  color: var(--azul) !important;
+  background: var(--azul-3xl) !important;
+}
+
+/* ── HISTÔRICO (Calculadora) ────────────────────────────── */
+.prefill-hint { color: var(--azul) !important; }
+.copy-ok { color: var(--teal) !important; }
+[data-theme="dark"] .copy-ok { color: var(--teal-lt) !important; }
+
+/* ── FOOTER — faixa verde Sicredi ────────────────────────── */
+footer::before {
+  background: linear-gradient(90deg, var(--azul-dk), var(--azul-lt), var(--teal), var(--azul)) !important;
+}
+.footer-brand { color: var(--azul) !important; }
+.footer-brand span { color: var(--azul-lt) !important; }
+.footer-link { color: var(--azul) !important; }
+
+/* ── TIPOGRAFIA — itálico dinâmico (princípio Sicredi) ───── */
+.home-hero h1 em   { color: var(--azul-lt) !important; font-style: italic; }
+.tool-header h1 em { color: var(--azul-lt) !important; font-style: italic; }
+
+/* ── SIMULADOR DISCLAIMER ───────────────────────────────── */
+.sim-disclaimer { border-left-color: var(--azul-lt) !important; }
+
+/* ── CAMPOS — focus verde ───────────────────────────────── */
+input:focus, .money-input-plain:focus,
+input[type=number]:focus, select:focus {
+  border-color: var(--azul) !important;
+  box-shadow: 0 0 0 3px rgba(31,107,10,.16), 0 0 0 1px var(--azul) !important;
+}
+.money-prefix:focus-within {
+  border-color: var(--azul) !important;
+  box-shadow: 0 0 0 3px rgba(31,107,10,.16), 0 0 0 1px var(--azul) !important;
+}
+
+/* ── SWITCH (toggle IR) — verde ─────────────────────────── */
+.switch input:checked + .switch-slider { background: var(--azul) !important; }
+
+/* ── HOME PILLARS ────────────────────────────────────────── */
+.home-pillar { border-color: var(--border) !important; }
+
+/* ── SECTION LABELS ──────────────────────────────────────── */
+.section-label { letter-spacing: .8px; }
+
+/* ── PREMIUM CARDS — borda esquerda verde sutil ─────────── */
+.sim-hero-card,
+.sim-selic-card {
+  border-left-width: 3px !important;
+  border-left-color: var(--azul-lt) !important;
+}
+
+/* ── PLAN CHART ─────────────────────────────────────────── */
+/* Os charts renderizam via JS — os overrides de cor estão em charts.js */
+
+/* ── LINK / TEMA BOTÃO ───────────────────────────────────── */
+.btn-share:hover {
+  background: var(--azul-3xl) !important;
+  border-color: var(--azul) !important;
+  color: var(--azul) !important;
+}
+.btn-clear:hover { color: var(--red) !important; }
+
+/* ── TEMA OPT-ROW ────────────────────────────────────────── */
+.opt-row:not(.off):hover { border-color: var(--azul) !important; }
+.rank-row:hover { transform: translateX(2px); }
+
+/* ── YRS DISPLAY ─────────────────────────────────────────── */
+.years-display strong { color: var(--azul) !important; }
+
+/* ══════════════════════════════════════════════════════════
+   SICREDI DESIGN LANGUAGE EXTRAS
+   Elementos de linguagem visual única: grafismo, elevação,
+   micro-interações e hierarquia de dados financeiros.
+══════════════════════════════════════════════════════════ */
+
+/* Grafismo Sicredi: canto quadrado + 3 arredondados no hero card */
+.sim-hero-card {
+  border-radius: var(--radius) !important;
+  position: relative;
+}
+.sim-hero-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 24px; height: 24px;
+  background: var(--azul-lt);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  opacity: .18;
+  border-top-left-radius: var(--radius);
+}
+
+/* Hero number mais expressivo */
+.sim-hero-value {
+  font-family: 'DM Serif Display', serif;
+  letter-spacing: -1px;
+}
+
+/* Comparative cards: data em destaque maior */
+.cmp-val.accent {
+  font-size: 16px !important;
+  letter-spacing: -.3px;
+}
+
+/* Tool cards: elevação suave ao hover */
+.tool-card:hover {
+  box-shadow: 0 8px 24px rgba(31,107,10,.14),
+              0 2px 6px rgba(31,107,10,.10) !important;
+}
+
+/* Metric cards: verde sutil */
+.metric-card {
+  border-left: 3px solid var(--azul-2xl);
+}
+.metric-card:hover {
+  border-left-color: var(--azul);
+}
+
+/* Reflection card: fundo mais quente e verde */
+.reflection-card {
+  background: linear-gradient(135deg, var(--surface), var(--azul-3xl)) !important;
+}
+
+/* Animação de entrada mais suave */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page.active { animation: fadeIn .3s ease both; }
+
+/* Progress bars com gradiente Sicredi */
+.progress-bar-fill {
+  background: linear-gradient(90deg, var(--azul-dk), var(--azul-lt)) !important;
+}
+
+/* Cards de resultado com linha top verde */
+.results .card:first-child,
+.plan-results .card:first-child {
+  border-top: 3px solid var(--azul-lt);
+}
+
+/* QDP badge: verde */
+.modal-eyebrow { color: var(--azul) !important; }
+.modal-eyebrow span { background: var(--azul) !important; }
