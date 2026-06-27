@@ -63,8 +63,9 @@ function _buildSub(bank) {
   if (!bank.derive) return '';
   switch (bank.derive.base) {
     case 'cdi':      return ((bank.derive.factor || 1) * 100).toFixed(0) + '% do CDI';
-    case 'selicAdd': return 'Selic + ' + (bank.derive.add || 0).toString().replace('.', ',') + '%';
-    case 'manual':   return (bank.derive.rate || 0).toFixed(2).replace('.', ',') + '% a.a.';
+    case 'selicAdd': return 'Selic + ' + (bank.derive.add || 0).toFixed(4).replace(/\.?0+$/, '').replace('.', ',') + '%';
+    case 'manual':   return (bank.derive.rate || 0).toFixed(2).replace('.', ',') + '% a.a. (prefixado)';
+    case 'ipcaPlus': return 'IPCA + ' + (bank.derive.realRate || 0).toFixed(2).replace('.', ',') + '% real';
     case 'poupanca': return poupSub(SELIC_FALLBACK);
     default:         return '';
   }

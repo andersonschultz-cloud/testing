@@ -12,12 +12,13 @@
 
 /* ── Estado global do simulador ──────────────────────────── */
 let simState = {
-  options:    [],      // preenchido em initSim()
-  selic:      SELIC_FALLBACK,
-  years:      10,
-  scrubMonth: 120,
-  applyIR:    false,
-  dragging:   false,
+  options:     [],      // preenchido em initSim()
+  selic:       SELIC_FALLBACK,
+  years:       10,
+  scrubMonth:  120,
+  applyIR:     false,
+  dragging:    false,
+  assumedIPCA: 5.5,    // % a.a. — premissa para simulação do Tesouro IPCA+
 };
 let simInitialized = false;
 let _editingId     = null;  // ID sendo editado no form de banco custom
@@ -66,6 +67,30 @@ async function initSim() {
 
   // Registrar drag handlers
   _attachDragHandlers();
+
+  // Inicializar dados do Tesouro Direto (não-bloqueante)
+  _initTreasuryData();
+}
+
+/**
+ * Inicializa dados do Tesouro Direto de forma assíncrona.
+ * Restaura do cache primeiro, depois tenta API em background.
+ */
+async function _initTreasuryData() {
+  // Restaurar do cache local (resposta imediata)
+  const cached = loadTreasuryCache();
+  if (cached && cached.bonds && cached.bonds.length > 0) {
+    applyTreasuryBondsToSimState(cached.bonds, simState.selic, simState.assumedIPCA);
+    setTreasurySuccess(cached.source || 'cache', cached.fetchedAt);
+    renderOptList();
+  } else {
+    // Sem cache: marcar como idle para o usuário clicar em atualizar
+  }
+
+  // Busca em background (só se cache expirou ou não existe)
+  if (!isTreasuryCacheFresh()) {
+    await refreshTreasuryData();
+  }
 }
 
 /* ── Drag na linha do tempo ──────────────────────────────── */
@@ -108,6 +133,16 @@ function _attachDragHandlers() {
    HANDLERS DE INPUT
 ══════════════════════════════════════════════════════════ */
 
+/** Handler para mudança no IPCA estimado (premissa Tesouro IPCA+). */
+function onIPCAInput() {
+  const v = parseFloat(document.getElementById('assumedIPCA').value.replace(',', '.'));
+  if (!isFinite(v) || v < 0) return;
+  simState.assumedIPCA = v;
+  refreshTreasurySubs(simState.selic, v); // reconstrói sub-labels dos títulos IPCA+
+  renderOptList();
+  renderSim();
+}
+
 function onSelicInput() {
   const v = parseFloat(document.getElementById('selicInput').value.replace(',', '.'));
   if (!isFinite(v) || v < 0) return;
@@ -118,11 +153,22 @@ function onSelicInput() {
 
 /** Recomputa as taxas derivadas de CDI/Selic após mudança da Selic. */
 function syncDerivedRates() {
+  const ipca = simState.assumedIPCA != null ? simState.assumedIPCA : DEFAULT_ASSUMED_IPCA;
   simState.options = simState.options.map(o => {
-    if (!o.derive || o.derive.base === 'manual') return o;
+    if (!o.derive) return o;
+    if (o.derive.base === 'manual') return o;  // taxa fixa: não recomputa com Selic
+
+    // Títulos Tesouro Direto: delega ao treasuryCalculator
+    if (o.treasuryBond) {
+      const newRate = round2(deriveRate(o.derive, simState.selic, ipca));
+      const bondData = { indexer: o.indexer, spread: o.derive.add, rate: o.derive.rate, realRate: o.derive.realRate };
+      return { ...o, rate: newRate, sub: buildTreasurySub(bondData, simState.selic, ipca) };
+    }
+
+    // Bancos privados (CDI, Selic, Poupança)
     return {
       ...o,
-      rate: round2(deriveRate(o.derive, simState.selic)),
+      rate: round2(deriveRate(o.derive, simState.selic, ipca)),
       sub:  o.id === 'poupanca' ? poupSub(simState.selic) : o.sub,
     };
   });
@@ -275,11 +321,26 @@ function renderOptList() {
       </label>
     </div>`;
 
+  const fixedPrivate = fixed.filter(o => !o.treasuryBond);
+  const fixedTreasury = fixed.filter(o => o.treasuryBond);
+
   document.getElementById('optList').innerHTML =
-    `<div class="opt-separator"><span>Padrão</span></div>` + fixed.map(rowHtml).join('') +
+    // Bancos privados
+    `<div class="opt-separator"><span>Bancos e Fintechs</span></div>` +
+    fixedPrivate.map(rowHtml).join('') +
+
+    // Tesouro Direto (com controles próprios)
+    buildTreasurySeparatorHTML() +
+    fixedTreasury.map(rowHtml).join('') +
+
+    // Personalizados
     (custom.length
-      ? `<div class="opt-separator" style="margin-top:10px"><span>Personalizadas</span></div>` + custom.map(rowHtml).join('')
+      ? `<div class="opt-separator" style="margin-top:10px"><span>Personalizadas</span></div>` +
+        custom.map(rowHtml).join('')
       : '');
+
+  // Atualiza linha de status do Tesouro após re-render
+  requestAnimationFrame(renderTreasuryStatus);
 }
 
 /* ── Inputs ──────────────────────────────────────────────── */
@@ -347,7 +408,7 @@ function renderSimChart(computed) {
   const investedArr = Array.from({ length: months + 1 }, (_, m) => principal + monthly * m);
   const gridVals    = [0, 0.25, 0.5, 0.75, 1].map(f => f * maxFinal * 1.06);
   const axisColor   = dark ? '#475569' : '#94A3B8';
-  const gridColor   = dark ? 'rgba(255,255,255,.05)' : 'rgba(63,161,16,.07)';
+  const gridColor   = dark ? 'rgba(255,255,255,.06)' : 'rgba(37,99,235,.07)';
 
   let svg = `<svg viewBox="0 0 ${SIM_VBW} ${SIM_VBH}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Gráfico de rendimentos comparativos ao longo do tempo">`;
   gridVals.forEach(v => {
@@ -365,7 +426,7 @@ function renderSimChart(computed) {
     svg += `<path d="${pathOf(map[o.id].value)}" fill="none" stroke="${o.color}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>`;
   });
   const sx = xOf(s);
-  svg += `<line x1="${sx.toFixed(1)}" y1="${SIM_PADT}" x2="${sx.toFixed(1)}" y2="${SIM_PADT + SIM_PLOTH}" stroke="${dark ? '#7BCF3A' : '#1F6B0A'}" stroke-width="1.5" stroke-dasharray="3 3"/>`;
+  svg += `<line x1="${sx.toFixed(1)}" y1="${SIM_PADT}" x2="${sx.toFixed(1)}" y2="${SIM_PADT + SIM_PLOTH}" stroke="${dark ? '#60A5FA' : '#2563EB'}" stroke-width="1.5" stroke-dasharray="3 3"/>`;
   enabled.forEach(o => {
     const cy = yOf(map[o.id].value[s] || 0);
     svg += `<circle cx="${sx.toFixed(1)}" cy="${cy.toFixed(1)}" r="4.5" fill="${o.color}" stroke="${dark ? '#1E293B' : '#fff'}" stroke-width="2"/>`;

@@ -1,14 +1,7 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "updated": "2026-06",
-  "note": "Taxas pesquisadas em jun/2026. Verifique periodicamente com cada instituição antes de investir.",
-  "sources": {
-    "sicredi": "quanto-rende.com jun/2026 — CDB liquidez diária",
-    "santander": "múltiplas fontes 2026 — CDB DI padrão",
-    "itau": "itau.com.br + múltiplas fontes 2026 — CDB DI",
-    "nubank": "nubank.com.br — Conta Remunerada",
-    "picpay": "picpay.com — Reserva PicPay"
-  },
+  "note": "Taxas pesquisadas em jun/2026. Tesouro Direto: taxas atualizadas via API automaticamente. CDBs: consulte a instituição antes de aplicar.",
   "banks": [
     {
       "id": "picpay",
@@ -71,28 +64,49 @@
       "minInvestment": 1
     },
     {
-      "id": "selic24",
-      "name": "Tesouro Selic 2024",
-      "category": "tesouro_direto",
-      "product": "Tesouro Selic 2024 — título público federal",
-      "derive": { "base": "selicAdd", "add": 0.1806 },
+      "id": "selic31",
+      "name": "Tesouro Selic 2031",
+      "category": "tesouro_selic",
+      "product": "Tesouro Selic — venc. 01/03/2031 (único disponível desde 2026)",
+      "derive": { "base": "selicAdd", "add": 0.08 },
       "color": "#2563EB",
       "logo": "https://logo.clearbit.com/tesourodireto.com.br",
       "taxable": true,
       "enabled": true,
-      "minInvestment": 30
+      "minInvestment": 100,
+      "treasuryBond": true,
+      "treasuryIndexer": "SELIC",
+      "maturityDate": "2031-03-01"
     },
     {
-      "id": "selic27",
-      "name": "Tesouro Selic 2027",
-      "category": "tesouro_direto",
-      "product": "Tesouro Selic 2027 — título público federal",
-      "derive": { "base": "selicAdd", "add": 0.3433 },
+      "id": "prefixado31",
+      "name": "Tesouro Prefixado 2031",
+      "category": "tesouro_prefixado",
+      "product": "Tesouro Prefixado — venc. 01/01/2031 (taxa atualizada via API)",
+      "derive": { "base": "manual", "rate": 14.36 },
       "color": "#4F46E5",
       "logo": "https://logo.clearbit.com/tesourodireto.com.br",
       "taxable": true,
       "enabled": true,
-      "minInvestment": 30
+      "minInvestment": 100,
+      "treasuryBond": true,
+      "treasuryIndexer": "PRE",
+      "maturityDate": "2031-01-01"
+    },
+    {
+      "id": "ipcaplus35",
+      "name": "Tesouro IPCA+ 2035",
+      "category": "tesouro_ipca",
+      "product": "Tesouro IPCA+ — venc. 15/05/2035 (spread real + IPCA estimado)",
+      "derive": { "base": "ipcaPlus", "realRate": 7.56 },
+      "color": "#7C3AED",
+      "logo": "https://logo.clearbit.com/tesourodireto.com.br",
+      "taxable": true,
+      "enabled": true,
+      "minInvestment": 100,
+      "treasuryBond": true,
+      "treasuryIndexer": "IPCA",
+      "maturityDate": "2035-05-15"
     },
     {
       "id": "poupanca",
