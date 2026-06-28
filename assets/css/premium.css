@@ -673,3 +673,268 @@ footer::before {
 .tool-card.tc-sim::before { background: linear-gradient(90deg, var(--azul), var(--azul-lt)); }
 [data-theme="dark"] .tc-sim .tool-cta,
 [data-theme="light"] .tc-sim .tool-cta { color: var(--azul-lt); }
+
+
+/* Correção menu mobile: garante que o dropdown fique acima do conteúdo e receba toque */
+@media (max-width: 780px) {
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 3000;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 62px;
+    left: 10px;
+    right: 10px;
+    width: auto;
+    z-index: 3001;
+    display: flex;
+    transform: translateY(-140%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .nav-links.open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .nav-link {
+    position: relative;
+    z-index: 3002;
+    width: 100%;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+
+  .nav-toggle {
+    position: relative;
+    z-index: 3003;
+    cursor: pointer;
+    touch-action: manipulation;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   Tema cooperativo — Sicredi / cata-ventos vivos
+════════════════════════════════════════════════════════════════ */
+[data-theme="cooperative"] {
+  /* Cores primárias */
+  --sicredi-green: #3FA110;
+  --sicredi-white: #FFFFFF;
+  --sicredi-dark-green: #146E37;
+  --sicredi-light-green: #D7E6C8;
+  --sicredi-brown: #5A3C1E;
+  --sicredi-yellow: #FFCD00;
+  --sicredi-dark-neutral: #5A645A;
+  --sicredi-magenta: #E60050;
+  --sicredi-wine: #730028;
+  --sicredi-blue: #46D7FF;
+  --sicredi-orange: #FF6400;
+  --sicredi-text: #404040;
+  --sicredi-gray: #7F7F7F;
+  --sicredi-border: #CCCCCC;
+  --sicredi-background: #F6F8F4;
+
+  --azul: var(--sicredi-green);
+  --azul-dk: var(--sicredi-dark-green);
+  --azul-lt: #54B82A;
+  --azul-xl: #74C94D;
+  --azul-2xl: rgba(63, 161, 16, .14);
+  --azul-3xl: rgba(63, 161, 16, .07);
+
+  --teal: #2F8E42;
+  --teal-dk: #146E37;
+  --teal-lt: #3FA110;
+  --teal-xl: #75C857;
+  --teal-2xl: rgba(20, 110, 55, .14);
+  --teal-3xl: rgba(20, 110, 55, .07);
+
+  --dourado: var(--sicredi-yellow);
+  --dourado-dk: #D7A800;
+  --dourado-lt: #FFE06A;
+  --dourado-xl: #FFF0A8;
+  --dourado-2xl: rgba(255, 205, 0, .18);
+  --dourado-3xl: rgba(255, 205, 0, .08);
+
+  --marrom: var(--sicredi-brown);
+  --marrom-lt: #7B5A33;
+  --marrom-xl: #B79265;
+  --marrom-2xl: rgba(90, 60, 30, .10);
+
+  --bg: var(--sicredi-background);
+  --bg2: #EEF5E8;
+  --surface: rgba(255, 255, 255, .88);
+  --surface2: rgba(247, 251, 244, .90);
+  --text: var(--sicredi-text);
+  --text2: #4E5A4E;
+  --text3: var(--sicredi-dark-neutral);
+  --border: rgba(63, 161, 16, .28);
+  --border2: rgba(20, 110, 55, .16);
+  --border-ctrl: rgba(63, 161, 16, .36);
+  --shadow: 0 8px 28px rgba(20, 110, 55, .10), 0 1px 0 rgba(255,255,255,.82) inset;
+  --shadow-lg: 0 24px 70px rgba(20, 110, 55, .16), 0 1px 0 rgba(255,255,255,.92) inset;
+  --shadow-btn: 0 12px 32px rgba(63, 161, 16, .25), 0 0 0 1px rgba(255,255,255,.22) inset;
+}
+
+[data-theme="cooperative"] body {
+  background:
+    radial-gradient(circle at 50% -15%, rgba(63, 161, 16, .16), transparent 38%),
+    radial-gradient(circle at 5% 42%, rgba(215, 230, 200, .60), transparent 31%),
+    radial-gradient(circle at 98% 52%, rgba(20, 110, 55, .10), transparent 34%),
+    var(--sicredi-background);
+  color: var(--sicredi-text);
+}
+
+[data-theme="cooperative"] .ambient-network {
+  background-image: url('../img/background/pinwheels.svg');
+  background-position: center 72px;
+  background-size: min(1680px, 132vw) auto;
+  opacity: .62;
+  animation: pinwheelDrift 24s ease-in-out infinite alternate;
+}
+
+[data-theme="cooperative"] .ambient-network::before {
+  background: #3FA110;
+  opacity: .18;
+}
+
+[data-theme="cooperative"] .ambient-network::after {
+  background: #D7E6C8;
+  opacity: .42;
+}
+
+@keyframes pinwheelDrift {
+  from { transform: translate3d(-8px, -2px, 0) rotate(-.25deg) scale(1); }
+  to { transform: translate3d(10px, 9px, 0) rotate(.35deg) scale(1.014); }
+}
+
+[data-theme="cooperative"] .topnav {
+  background: rgba(255, 255, 255, .88);
+  border-bottom-color: rgba(63, 161, 16, .20);
+  box-shadow: 0 10px 34px rgba(20, 110, 55, .10), 0 1px 0 rgba(255,255,255,.88) inset;
+}
+
+[data-theme="cooperative"] .nav-logo {
+  border-color: rgba(63, 161, 16, .42);
+  box-shadow: 0 0 0 4px rgba(63, 161, 16, .08), 0 0 24px rgba(63, 161, 16, .20);
+}
+
+[data-theme="cooperative"] .nav-title span,
+[data-theme="cooperative"] .highlight,
+[data-theme="cooperative"] h1 em,
+[data-theme="cooperative"] .tools-heading h2 span {
+  color: var(--sicredi-green);
+}
+
+[data-theme="cooperative"] .nav-links,
+[data-theme="cooperative"] .home-pillar,
+[data-theme="cooperative"] .theme-btn,
+[data-theme="cooperative"] .nav-toggle {
+  background: rgba(255,255,255,.70);
+}
+
+[data-theme="cooperative"] .nav-link.active,
+[data-theme="cooperative"] .primary-button,
+[data-theme="cooperative"] button.primary,
+[data-theme="cooperative"] .btn-primary,
+[data-theme="cooperative"] .btn-calc,
+[data-theme="cooperative"] .btn-plan,
+[data-theme="cooperative"] .btn-sim {
+  background: linear-gradient(135deg, var(--sicredi-green), var(--sicredi-dark-green));
+  color: #fff;
+  box-shadow: var(--shadow-btn);
+}
+
+[data-theme="cooperative"] .nav-link:hover,
+[data-theme="cooperative"] .tool-cta,
+[data-theme="cooperative"] a {
+  color: var(--sicredi-dark-green);
+}
+
+[data-theme="cooperative"] .home-eyebrow,
+[data-theme="cooperative"] .tool-header .th-badge,
+[data-theme="cooperative"] .opt-treasury-tag,
+[data-theme="cooperative"] .time-reminder {
+  background: rgba(63, 161, 16, .13);
+  color: var(--sicredi-dark-green);
+  border-color: rgba(63, 161, 16, .26);
+}
+
+[data-theme="cooperative"] .tool-card,
+[data-theme="cooperative"] .card,
+[data-theme="cooperative"] .cmp-card,
+[data-theme="cooperative"] .reflection-card,
+[data-theme="cooperative"] .cross-cta,
+[data-theme="cooperative"] .metric-card,
+[data-theme="cooperative"] .plan-metric,
+[data-theme="cooperative"] .scenario-card,
+[data-theme="cooperative"] .discount-card,
+[data-theme="cooperative"] .qdp-step,
+[data-theme="cooperative"] .cdi-box,
+[data-theme="cooperative"] .ir-toggle,
+[data-theme="cooperative"] .ipca-row,
+[data-theme="cooperative"] .opt-row,
+[data-theme="cooperative"] .custom-form,
+[data-theme="cooperative"] .sim-disclaimer {
+  background: rgba(255,255,255,.82);
+  border-color: rgba(63, 161, 16, .20);
+}
+
+[data-theme="cooperative"] .tool-card:hover,
+[data-theme="cooperative"] .card:hover,
+[data-theme="cooperative"] .cmp-card:hover {
+  border-color: rgba(63, 161, 16, .42);
+  box-shadow: 0 24px 64px rgba(20, 110, 55, .16), 0 0 34px rgba(63, 161, 16, .10);
+}
+
+[data-theme="cooperative"] .tool-icon,
+[data-theme="cooperative"] .benefit-ico,
+[data-theme="cooperative"] .nav-ico {
+  color: var(--sicredi-green);
+}
+
+[data-theme="cooperative"] .tc-sim .tool-icon,
+[data-theme="cooperative"] .warning {
+  background: rgba(255, 205, 0, .18);
+  color: #5A3C1E;
+}
+
+[data-theme="cooperative"] input[type=text],
+[data-theme="cooperative"] input[type=number],
+[data-theme="cooperative"] .money-input-plain,
+[data-theme="cooperative"] select,
+[data-theme="cooperative"] .money-prefix,
+[data-theme="cooperative"] .ipca-input-wrap input {
+  background: rgba(255,255,255,.92);
+  border-color: rgba(63, 161, 16, .26);
+  color: var(--sicredi-text);
+}
+
+[data-theme="cooperative"] input[type=text]:focus,
+[data-theme="cooperative"] input[type=number]:focus,
+[data-theme="cooperative"] .money-input-plain:focus,
+[data-theme="cooperative"] select:focus,
+[data-theme="cooperative"] .money-prefix:focus-within,
+[data-theme="cooperative"] .ipca-input-wrap input:focus {
+  border-color: var(--sicredi-green);
+  box-shadow: 0 0 0 4px rgba(63, 161, 16, .12);
+}
+
+[data-theme="cooperative"] .footer,
+[data-theme="cooperative"] footer {
+  border-top-color: rgba(63, 161, 16, .26);
+  color: var(--sicredi-dark-neutral);
+}
+
+@media (max-width: 860px) {
+  [data-theme="cooperative"] .nav-links {
+    background: rgba(255, 255, 255, .97);
+    border-color: rgba(63, 161, 16, .24);
+  }
+}

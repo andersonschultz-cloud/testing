@@ -27,8 +27,8 @@ function renderChart(horas, dias, perc) {
       datasets: [{
         data: [horas, dias, perc],
         backgroundColor: dark
-          ? ['#00B4FF', '#00C8D4', '#FFB800']
-          : ['#1D6AA5', '#0A7870', '#C87800'],
+          ? ['#3B82F6', '#14B8A6', '#F59E0B']
+          : ['#2563EB', '#0F766E', '#D97706'],
         borderRadius: 8,
         borderWidth: 0,
       }],
@@ -73,7 +73,7 @@ function renderPlanChart(pp, pr, ov) {
         data: [pp, ov ? 0 : pr],
         backgroundColor: [
           ov ? '#DC2626' : (dark ? '#F59E0B' : '#D97706'),
-          dark ? '#071524' : '#EFF6FF',
+          dark ? '#263548' : '#EFF6FF',
         ],
         borderWidth: 0,
         hoverOffset: 4,
