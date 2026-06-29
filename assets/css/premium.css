@@ -164,6 +164,78 @@ body {
   to { transform: translate3d(22px, 20px, 0) scale(1.05); }
 }
 
+
+/* ── Fundos vivos para todos os temas ───────────────────── */
+body {
+  background-size: 120% 120%, 115% 115%, 125% 125%, auto;
+  animation: liveThemeGradient 18s ease-in-out infinite alternate;
+}
+
+.ambient-network {
+  will-change: transform, background-position, opacity;
+}
+
+.ambient-network {
+  background-image:
+    url('../img/background/network.svg'),
+    radial-gradient(circle at 18% 28%, rgba(0, 213, 255, .12), transparent 24%),
+    radial-gradient(circle at 78% 62%, rgba(0, 180, 255, .10), transparent 27%);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: center 68px, 12% 20%, 88% 70%;
+  background-size: min(1800px, 126vw) auto, 560px 560px, 620px 620px;
+  animation: networkDrift 22s ease-in-out infinite alternate, liveBackgroundPulse 16s ease-in-out infinite alternate;
+}
+
+[data-theme="light"] .ambient-network {
+  background-image:
+    url('../img/background/network.svg'),
+    radial-gradient(circle at 18% 28%, rgba(0, 143, 202, .16), transparent 25%),
+    radial-gradient(circle at 78% 62%, rgba(0, 159, 179, .12), transparent 28%);
+  opacity: .42;
+}
+
+[data-theme="dark"] .ambient-network {
+  opacity: .82;
+}
+
+@keyframes liveThemeGradient {
+  0% { background-position: 50% 0%, 0% 45%, 100% 55%, center; }
+  50% { background-position: 56% 4%, 6% 39%, 94% 61%, center; }
+  100% { background-position: 44% 7%, 10% 52%, 90% 48%, center; }
+}
+
+@keyframes liveBackgroundPulse {
+  0% { filter: saturate(1) brightness(1); }
+  100% { filter: saturate(1.16) brightness(1.05); }
+}
+
+[data-theme="cooperative"] .ambient-network {
+  background-image:
+    url('../img/background/pinwheels.svg'),
+    radial-gradient(circle at 20% 30%, rgba(63, 161, 16, .18), transparent 25%),
+    radial-gradient(circle at 82% 66%, rgba(215, 230, 200, .55), transparent 29%);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: center 72px, 14% 22%, 88% 72%;
+  background-size: min(1680px, 132vw) auto, 560px 560px, 660px 660px;
+  opacity: .66;
+  animation: pinwheelDrift 24s ease-in-out infinite alternate, cooperativeGlow 17s ease-in-out infinite alternate;
+}
+
+@keyframes cooperativeGlow {
+  0% { filter: saturate(1) brightness(1); }
+  100% { filter: saturate(1.18) brightness(1.04); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .ambient-network,
+  .ambient-network::before,
+  .ambient-network::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
 main, footer, .topnav { position: relative; z-index: 1; }
 
 /* ── Navigation ─────────────────────────────────────────── */
@@ -792,11 +864,15 @@ footer::before {
 }
 
 [data-theme="cooperative"] .ambient-network {
-  background-image: url('../img/background/pinwheels.svg');
-  background-position: center 72px;
-  background-size: min(1680px, 132vw) auto;
-  opacity: .62;
-  animation: pinwheelDrift 24s ease-in-out infinite alternate;
+  background-image:
+    url('../img/background/pinwheels.svg'),
+    radial-gradient(circle at 20% 30%, rgba(63, 161, 16, .18), transparent 25%),
+    radial-gradient(circle at 82% 66%, rgba(215, 230, 200, .55), transparent 29%);
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: center 72px, 14% 22%, 88% 72%;
+  background-size: min(1680px, 132vw) auto, 560px 560px, 660px 660px;
+  opacity: .66;
+  animation: pinwheelDrift 24s ease-in-out infinite alternate, cooperativeGlow 17s ease-in-out infinite alternate;
 }
 
 [data-theme="cooperative"] .ambient-network::before {
